@@ -5,6 +5,8 @@
 
 package framework;
 
+import org.lwjgl.opengl.Display;
+
 /**
  *
  * @author Marco
@@ -17,7 +19,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         //muro ladrofadsaf
-      System.out.print("asd");
+        System.out.print("asd");
     }
 
 }
