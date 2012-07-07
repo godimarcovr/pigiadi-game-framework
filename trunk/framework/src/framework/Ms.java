@@ -41,6 +41,7 @@ public class Ms {
     
     
     public static void lControl(){
+        isClicked();
         if(lClicked){
             lTime+=1;
         }else {
@@ -50,6 +51,7 @@ public class Ms {
     
      
     public static void update(){
+        
         lControl();
         System.out.print(lTime+"\n");
     }
