@@ -33,9 +33,9 @@ public class Tester {
         // init OpenGL here
 
         while (!Display.isCloseRequested()) {
-            Ms.update();
+            Ms.update(0);
 
-            
+           
             
             Display.update();
         }
