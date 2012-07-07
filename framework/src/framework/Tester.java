@@ -34,6 +34,9 @@ public class Tester {
 
             // render OpenGL here
             Ms.update();
+            if (Ms.wasClicked()){
+                System.out.print("clcik");
+            }
             Display.update();
         }
 

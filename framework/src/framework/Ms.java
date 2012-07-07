@@ -9,7 +9,7 @@ import org.lwjgl.input.Mouse;
  * @author matteo
  */
 public class Ms {
-    private static float[] position ;
+    private static float[] lPosition ;
     private static boolean lClicked;
     private static long lTime;
     
@@ -23,13 +23,14 @@ public class Ms {
     }
     
     public static float[] getPosition(){
-        position = new float[]{Mouse.getX(),Mouse.getY()};
-        return position;
+        
+        return new float[]{Mouse.getX(),Mouse.getY()};
     }
     
     public static boolean isClicked(){
         if (Mouse.isButtonDown(0)) {
             lClicked = true;
+            lPosition = getPosition();
             return true;
         } else {
             lClicked = false;
@@ -37,16 +38,28 @@ public class Ms {
         }
     }
     
+    public static boolean wasClicked(){
+        if (lTime > 0 && lClicked){
+            return true;
+        } else { return false;}
+    }
     
+    public static float[] whereWasClicked(){
+            return lPosition;
+     }
     
+    public static long clickedTime(){
+        return lTime;
+    }
     
     public static void lControl(){
-        isClicked();
+        
         if(lClicked){
             lTime+=1;
         }else {
             lTime = 0;
         }
+        isClicked();
     }
     
      
