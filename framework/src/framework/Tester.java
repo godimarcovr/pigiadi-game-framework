@@ -5,6 +5,8 @@
 package framework;
 
 import framework.Ms.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -31,12 +33,10 @@ public class Tester {
         // init OpenGL here
 
         while (!Display.isCloseRequested()) {
-
-            // render OpenGL here
             Ms.update();
-            if (Ms.wasClicked()){
-                System.out.print("clcik");
-            }
+
+            
+            
             Display.update();
         }
 

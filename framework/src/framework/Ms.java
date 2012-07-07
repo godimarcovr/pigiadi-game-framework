@@ -9,7 +9,7 @@ import org.lwjgl.input.Mouse;
  * @author matteo
  */
 public class Ms {
-    private static float[] lPosition ;
+    private static float[] lPosition = new float[]{0,0};
     private static boolean lClicked;
     private static long lTime;
     
@@ -66,7 +66,6 @@ public class Ms {
     public static void update(){
         
         lControl();
-        System.out.print(lTime+"\n");
-    }
+      }
     
 }
