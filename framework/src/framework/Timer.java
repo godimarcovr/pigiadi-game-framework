@@ -13,9 +13,14 @@ public class Timer {
     private long counter;
     private boolean isCD;
 
-    public Timer(long ms, boolean CD){
+    public Timer(long ms){
         this.counter=ms;
-        this.isCD=CD;
+        this.isCD=true;
+    }
+
+    public Timer(){
+        this.counter=0;
+        this.isCD=false;
     }
 
     public void pass(long d){
