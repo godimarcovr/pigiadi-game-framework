@@ -39,7 +39,7 @@ public class Ms {
     }
     
     public static boolean wasClicked(){
-        if (lTime > 0 && lClicked){
+        if (lTime > 0){
             return true;
         } else { return false;}
     }
