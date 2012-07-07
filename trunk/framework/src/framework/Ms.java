@@ -12,6 +12,9 @@ public class Ms {
     private static float[] lPosition = new float[]{0,0};
     private static boolean lClicked;
     private static long lTime;
+    private static float[] rPosition = new float[]{0,0};
+    private static boolean rClicked;
+    private static long rTime;
     
         
     public static float getX(){
@@ -52,7 +55,32 @@ public class Ms {
         return lTime;
     }
     
-    public static void lControl(){
+    public static boolean isRClicked(){
+        if (Mouse.isButtonDown(1)) {
+            rClicked = true;
+            rPosition = getPosition();
+            return true;
+        } else {
+            rClicked = false;
+            return false;
+        }
+    }
+    
+    public static boolean wasRClicked(){
+        if (rTime > 0){
+            return true;
+        } else { return false;}
+    }
+    
+    public static float[] whereWasRClicked(){
+            return rPosition;
+     }
+    
+    public static long clickedRTime(){
+        return rTime;
+    }
+      
+    public static void lControl(int delta){
         
         if(lClicked){
             lTime+=1;
@@ -61,11 +89,21 @@ public class Ms {
         }
         isClicked();
     }
-    
-     
-    public static void update(){
+       
+        public static void rControl(int delta){
         
-        lControl();
+        if(rClicked){
+            rTime+=1;
+        }else {
+            rTime = 0;
+        }
+        isRClicked();
+    }
+        
+    public static void update(int delta){
+        
+        lControl(delta);
+        rControl(delta);
       }
     
 }
