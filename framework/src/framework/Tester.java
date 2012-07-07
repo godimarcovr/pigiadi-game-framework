@@ -4,7 +4,7 @@
  */
 package framework;
 
-import framework.Input.*;
+import framework.Ms.*;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -33,7 +33,7 @@ public class Tester {
         while (!Display.isCloseRequested()) {
 
             // render OpenGL here
-            System.out.print(mouse.isClicked(0)+"\n");
+            Ms.update();
             Display.update();
         }
 
