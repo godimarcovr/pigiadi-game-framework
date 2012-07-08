@@ -15,33 +15,35 @@ import org.newdawn.slick.opengl.TextureImpl;
  */
 public class TextBox extends Label {
 
-boolean enabled;
+    public boolean enabled;
 
     public TextBox(Box box, String text, int font, Color tCol, Color bCol, Color sCol) {
         super(box, text, font, tCol, bCol, sCol);
         this.enabled = false;
     }
 
-  public void update(){
- 
-      
-      if (this.isClicked()) {
-          enabled = true;
-      }else{ enabled = false;}
-      
-      if (enabled){
-      String s = Kb.getChars();
-      if (s!=""){
-          if ("BACK".equals(s)){
-              text=text.substring(0, text.length()-1);
-          }else if ("SPACE".equals(s)){
-              text=text+" ";
-          }else if(s.length()<2){
-          text+=s;
-          }
-      }
-      }
-  }
+    public void update() {
+
+
+        if (this.isClicked()) {
+            enabled = true;
+        } else {
+            enabled = false;
+        }
+
+        if (enabled) {
+            String s = Kb.getChars();
+            if (s != "") {
+                if ("BACK".equals(s)) {
+                    text = text.substring(0, text.length() - 1);
+                } else if ("SPACE".equals(s)) {
+                    text = text + " ";
+                } else if (s.length() < 2) {
+                    text += s;
+                }
+            }
+        }
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -50,7 +52,4 @@ boolean enabled;
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
-
-
 }
