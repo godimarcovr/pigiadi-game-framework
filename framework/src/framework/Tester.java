@@ -46,8 +46,8 @@ public class Tester {
         getDelta(); // call once before loop to initialise lastFrame
         lastFPS = getTime(); // call before loop to initialise fps timer
 
-        int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 18);
-        this.labTest=new Label(new Box(50,50,300,30),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
+        int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 50);
+        this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
 
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
