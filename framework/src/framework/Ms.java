@@ -89,7 +89,7 @@ public class Ms {
     public static void lControl(int delta) {
 
         if (lClicked) {
-            lTime += 1;
+            lTime += delta;
         } else {
             lTime = 0;
         }
@@ -99,7 +99,7 @@ public class Ms {
     public static void rControl(int delta) {
 
         if (rClicked) {
-            rTime += 1;
+            rTime += delta;
         } else {
             rTime = 0;
         }
