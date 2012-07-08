@@ -118,6 +118,7 @@ public class TextBox extends Label {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
         if(this.enabled){
+            TimerHandler.removeTimer(timer);
             this.timer=TimerHandler.createCD(250);
         }
         else{
