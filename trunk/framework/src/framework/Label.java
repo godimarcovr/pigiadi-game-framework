@@ -37,8 +37,8 @@ public class Label {
         return text;
     }
 
-    public boolean isClicked(Position click) {
-        if (shape.isHit(click.x, click.y)) {
+    public boolean isClicked() {
+        if (shape.isHit(Ms.getX(), Ms.getY())) {
             return true;
         } else {
             return false;
@@ -90,11 +90,11 @@ public class Label {
         GL11.glPopMatrix();
     }
 
-    private float fontCenterPosX() {
+    public float fontCenterPosX() {
         return shape.w / 2 - font.getWidth(this.text) / 2;
     }
 
-    private float fontCenterPosY() {
+    public float fontCenterPosY() {
         return shape.h / 2 - font.getLineHeight() / 2;
     }
 
