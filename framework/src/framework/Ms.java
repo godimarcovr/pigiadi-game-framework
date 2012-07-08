@@ -11,7 +11,6 @@ import org.lwjgl.input.Mouse;
  * @author matteo
  */
 public class Ms {
-
     private static Position lPosition = new Position();
     private static boolean lClicked;
     private static long lTime;
@@ -24,8 +23,9 @@ public class Ms {
     }
 
     public static float getY() {
-        return Mouse.getY();
+        return Window.h-Mouse.getY();
     }
+
 
     public static Position getPosition() {
 
