@@ -111,12 +111,9 @@ public class Tester {
     }
 
     public void update(int delta) {
-        textTest.update();        
-        /*System.out.print(Ms.clickedRTime()+"\n");
-            String s = Kb.getChars();
-            if (!s.equals("")){
-                System.out.print(s);
-          }*/
+        textTest.update();            
+        Kb.getChars();
+
 
     }
 }

@@ -38,7 +38,7 @@ public class Label {
     }
 
     public boolean isClicked() {
-        if (shape.isHit(Ms.getX(), Ms.getY())) {
+        if (shape.isHit(Ms.getX(), Ms.getY())&& Ms.isClicked()) {
             return true;
         } else {
             return false;
