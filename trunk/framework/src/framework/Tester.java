@@ -36,11 +36,8 @@ public class Tester {
             Ms.update(0);
           
             String s = Kb.getChars();
-            if (s!=""){
-                if(s=="A"){
-                    System.out.print("ASD");
-                }
-                System.out.print(s+"\n");
+            if (!s.equals("")){
+                System.out.print(s);
             }
 
 
