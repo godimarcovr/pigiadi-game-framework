@@ -10,16 +10,19 @@ package framework;
  * @author Marco
  */
 public class Timer {
-    private long counter;
+    public long counter;
+    public long original;
     private boolean isCD;
 
     public Timer(long ms){
         this.counter=ms;
+        this.original=ms;
         this.isCD=true;
     }
 
     public Timer(){
         this.counter=0;
+        this.original=0;
         this.isCD=false;
     }
 
@@ -40,4 +43,10 @@ public class Timer {
             return false;
         }
     }
+
+    public void reset(){
+        this.counter=this.original;
+    }
+
+
 }
