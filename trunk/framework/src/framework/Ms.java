@@ -9,10 +9,10 @@ import org.lwjgl.input.Mouse;
  * @author matteo
  */
 public class Ms {
-    private static float[] lPosition = new float[]{0,0};
+    private static Position lPosition = new Position();
     private static boolean lClicked;
     private static long lTime;
-    private static float[] rPosition = new float[]{0,0};
+    private static Position rPosition = new Position();
     private static boolean rClicked;
     private static long rTime;
     
@@ -25,9 +25,9 @@ public class Ms {
         return  Mouse.getY();
     }
     
-    public static float[] getPosition(){
+    public static Position getPosition(){
         
-        return new float[]{Mouse.getX(),Mouse.getY()};
+        return new Position(Mouse.getX(),Mouse.getY());
     }
     
     public static boolean isClicked(){
@@ -47,7 +47,7 @@ public class Ms {
         } else { return false;}
     }
     
-    public static float[] whereWasClicked(){
+    public static Position whereWasClicked(){
             return lPosition;
      }
     
@@ -72,7 +72,7 @@ public class Ms {
         } else { return false;}
     }
     
-    public static float[] whereWasRClicked(){
+    public static Position whereWasRClicked(){
             return rPosition;
      }
     
