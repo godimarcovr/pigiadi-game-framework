@@ -22,15 +22,14 @@ public class Tester {
     }
 
     public void start(){
-        try {
-            Display.setDisplayMode(new DisplayMode(800, 600));
-            Display.create();
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(0);
-        }
 
         // init OpenGL here
+        boolean success=Window.initialise(800,600);
+        try {
+            Display.create();
+        } catch (LWJGLException ex) {
+            ex.printStackTrace();
+        }
 
         while (!Display.isCloseRequested()) {
             Ms.update(0);
