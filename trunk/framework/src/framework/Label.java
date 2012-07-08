@@ -28,7 +28,7 @@ public class Label {
         this.borderCol=bCol;
         this.bgCol=sCol;
     }
-
+    
     public void setText(String text) {
         this.text = text;
     }
