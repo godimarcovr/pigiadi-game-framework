@@ -10,10 +10,10 @@ import org.lwjgl.input.Keyboard;
  * @author matteo
  */
 public class Kb {
-    public static String old = "";
-    public static String current = "";
-    public static int kOld = 0;
-    public static int kCurrent = 0;
+    private static String old = "";
+    private static String current = "";
+    private static int kOld = 0;
+    private static int kCurrent = 0;
     
     public static String getChars(){  
             if (Keyboard.getNumKeyboardEvents()>0){
