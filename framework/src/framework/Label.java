@@ -4,6 +4,8 @@
  */
 package framework;
 
+import org.newdawn.slick.Color;
+
 /**
  *
  * @author matteo
@@ -14,13 +16,15 @@ public class Label {
     float w;
     float h;
     String text;
+    int fontID;
+    Color textCol, borderCol;
 
-    public Label(Position pos, float w, float h, String text) {
+    public Label(Box box, String text,int font, Color tCol,Color bCol) {
         this.text = text;
-        this.shape.x = pos.x;
-        this.shape.y = pos.y;
-        this.shape.w = w;
-        this.shape.h = h;
+        this.shape=box;
+        this.fontID=font;
+        this.textCol=tCol;
+        this.borderCol=bCol;
     }
 
     public void setText(String text) {
@@ -38,4 +42,6 @@ public class Label {
             return false;
         }
     }
+
+
 }
