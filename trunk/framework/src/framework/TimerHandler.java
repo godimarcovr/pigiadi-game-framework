@@ -24,6 +24,12 @@ public class TimerHandler {
         return c-1;
     }
 
+    public static int createCD(long ms){
+        tim.put(c,new Timer(ms));
+        c++;
+        return c-1;
+    }
+
     public static void update(int delta){
         Set<Entry<Integer, Timer>> keyset=tim.entrySet();
         for(Entry ent:keyset){
