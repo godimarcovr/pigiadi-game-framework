@@ -4,7 +4,10 @@
  */
 package framework;
 
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.opengl.TextureImpl;
 
 /**
  *
@@ -13,18 +16,17 @@ import org.newdawn.slick.Color;
 public class Label {
 
     Box shape;
-    float w;
-    float h;
     String text;
-    int fontID;
-    Color textCol, borderCol;
+    TrueTypeFont font;
+    Color textCol, borderCol, bgCol;
 
-    public Label(Box box, String text,int font, Color tCol,Color bCol) {
+    public Label(Box box, String text,int font, Color tCol,Color bCol,Color sCol) {
         this.text = text;
         this.shape=box;
-        this.fontID=font;
+        this.font=FontHandler.getFont(font);
         this.textCol=tCol;
         this.borderCol=bCol;
+        this.bgCol=sCol;
     }
 
     public void setText(String text) {
@@ -35,12 +37,65 @@ public class Label {
         return text;
     }
 
-    public boolean clicked(Position click) {
+    public boolean isClicked(Position click) {
         if (shape.isHit(click.x, click.y)) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public void draw() {
+        bgCol.bind();
+        GL11.glPushMatrix();
+        {
+            GL11.glTranslatef(this.shape.x, this.shape.y, 0);
+
+            GL11.glBegin(GL11.GL_QUADS);
+            {
+                GL11.glVertex2f(0, 0);
+
+                GL11.glVertex2f(this.shape.w, 0);
+
+                GL11.glVertex2f(this.shape.w, this.shape.h);
+
+                GL11.glVertex2f(0, this.shape.h);
+            }
+            GL11.glEnd();
+
+            borderCol.bind();
+
+            GL11.glBegin(GL11.GL_LINE_LOOP);
+            {
+                GL11.glVertex2f(0, 0);
+
+                GL11.glVertex2f(this.shape.w, 0);
+
+                GL11.glVertex2f(this.shape.w, this.shape.h);
+
+                GL11.glVertex2f(0, this.shape.h);
+            }
+            GL11.glEnd();
+
+            GL11.glPushMatrix();
+            {
+                GL11.glTranslatef(fontCenterPosX(), fontCenterPosY(), 0);
+                GL11.glEnable(GL11.GL_BLEND);
+                TextureImpl.bindNone();
+                this.font.drawString(0, 0, this.text, this.textCol);
+                GL11.glDisable(GL11.GL_BLEND);
+            }
+            GL11.glPopMatrix();
+        }
+        GL11.glPopMatrix();
+    }
+
+    private float fontCenterPosX() {
+        return shape.w / 2 - font.getWidth(this.text) / 2;
+    }
+
+    private float fontCenterPosY() {
+        return shape.h / 2 - font.getLineHeight() / 2;
     }
 
 
