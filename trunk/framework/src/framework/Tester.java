@@ -5,6 +5,7 @@
 package framework;
 
 import framework.Ms.*;
+import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lwjgl.LWJGLException;
@@ -13,6 +14,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+import org.newdawn.slick.Color;
 
 /**
  *
@@ -23,6 +25,8 @@ public class Tester {
     long lastFrame;
     int fps;
     long lastFPS;
+
+    Label labTest;
     
     public Tester() {
         
@@ -41,19 +45,20 @@ public class Tester {
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
         lastFPS = getTime(); // call before loop to initialise fps timer
+
+        int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 18);
+        this.labTest=new Label(new Box(50,50,300,30),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
+
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
             Ms.update(delta);
             updateFPS();
-            System.out.print(Ms.clickedRTime()+"\n");
-            String s = Kb.getChars();
+
+            update(delta);
             renderGL();
 
-            if (!s.equals("")){
-                System.out.print(s);
-            }
             Display.update();
-           Display.sync(60); // cap fps to 60fps
+            Display.sync(60); // cap fps to 60fps
         }
         
 
@@ -67,7 +72,7 @@ public class Tester {
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GLU.gluOrtho2D(0, 800, 600, 0);
+        GLU.gluOrtho2D(0, Window.w, Window.h, 0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         //GL11.glEnable(GL11.GL_BLEND);
         //GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -96,9 +101,17 @@ public class Tester {
         fps++;
     }
     
-     //DRAW
-    private void renderGL() {
+    public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        this.labTest.draw();
+    }
+
+    public void update(int delta) {
+        /*System.out.print(Ms.clickedRTime()+"\n");
+            String s = Kb.getChars();
+            if (!s.equals("")){
+                System.out.print(s);
+          }*/
 
     }
 }
