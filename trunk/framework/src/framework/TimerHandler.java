@@ -33,12 +33,24 @@ public class TimerHandler {
     public static void update(int delta){
         Set<Entry<Integer, Timer>> keyset=tim.entrySet();
         for(Entry ent:keyset){
-            ((Timer)ent.getValue()).pass(delta);
+            Timer t=(Timer)ent.getValue();
+            if(t.isTimeUp()){
+                int remain=(int)t.counter;
+                t.reset();
+                t.counter+=remain;
+            }
+            else{
+                t.pass(delta);
+            }
         }
     }
 
     public static boolean isTimeUp(int id){
-        if(tim.get(id).isTimeUp()){
+        Timer t=tim.get(id);
+        if(t==null){
+            return false;
+        }
+        if(t.isTimeUp()){
             return true;
         }
         else{

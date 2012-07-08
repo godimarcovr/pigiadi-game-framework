@@ -48,13 +48,15 @@ public class Tester {
         lastFPS = getTime(); // call before loop to initialise fps timer
         
         int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 50);
-        this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
-        this.textTest=new TextBox(new Box(200,100,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
+        //this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
+        this.textTest=new TextBox(new Box(200,100,500,100),"",f1,Color.red,Color.cyan,Color.lightGray);
+        this.textTest.setEnabled(true);
         TimerHandler.createTimer();
         
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
             Ms.update(delta);
+            TimerHandler.update(delta);
             updateFPS();
 
             update(delta);
@@ -106,14 +108,14 @@ public class Tester {
     
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        this.labTest.draw();
+        //this.labTest.draw();
         this.textTest.draw();
     }
 
     public void update(int delta) {
         textTest.update();            
-        Kb.getChars();
-
+        String read=Kb.getChars();
+        textTest.upText(read);
 
     }
 }
