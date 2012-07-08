@@ -12,7 +12,8 @@ import org.lwjgl.input.Keyboard;
 public class Kb {
     public static String old = "";
     public static String current = "";
-
+    public static int kOld = 0;
+    public static int kCurrent = 0;
     
     public static String getChars(){  
             if (Keyboard.getNumKeyboardEvents()>0){
@@ -21,15 +22,36 @@ public class Kb {
             Keyboard.next();
             if (Keyboard.getEventKeyState()) {    
                 current = Keyboard.getKeyName(Keyboard.getEventKey());
-                if (old != current && current!=null){
+                if (old != current && current!=null){                 
+                
+                    old = current;                       
                     
-                     old = current;  
-                     
-                     return (current);           
+                    return (current);           
             }
             }
         return "";
     }
+    
+        public static int getKeys(){  
+            if (Keyboard.getNumKeyboardEvents()>0){
+                kOld =0;
+            }
+            Keyboard.next();
+            if (Keyboard.getEventKeyState()) {    
+                kCurrent =(Keyboard.getEventKey());
+                if (kOld != kCurrent){                 
+                
+                    kOld = kCurrent;                       
+                    
+                    return (kCurrent);           
+            } else if (Keyboard.isRepeatEvent()){
+                   
+                 return (kCurrent);  
+            }
+            }
+        return 0;
+    }
+    
     public static boolean isPressed(String key){
         if (Keyboard.isKeyDown(Keyboard.getKeyIndex(key))){
             return true;

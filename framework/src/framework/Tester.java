@@ -35,14 +35,12 @@ public class Tester {
         while (!Display.isCloseRequested()) {
             Ms.update(0);
           
+            int s = Kb.getKeys();
+            if (s!=0){
 
-            String s = Kb.getChars();
-            if (s!=""){
-                if (s=="A"){
-                    System.out.print("asd");
-                }
                 System.out.print(s+"\n");
             }
+
 
            
             
