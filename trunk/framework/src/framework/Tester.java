@@ -51,6 +51,7 @@ public class Tester {
         //this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
         this.textTest=new TextBox(new Box(200,100,500,100),"",f1,Color.red,Color.cyan,Color.lightGray);
         this.textTest.setEnabled(true);
+        this.textTest.visible = true;
         TimerHandler.createTimer();
         
         while (!Display.isCloseRequested()) {

@@ -14,8 +14,8 @@ import org.newdawn.slick.opengl.TextureImpl;
  * @author matteo
  */
 public class TextBox extends Label {
-
-    public boolean enabled;
+    
+    public boolean enabled, visible;
     public int timer;
     public boolean cursor;
 
@@ -23,29 +23,14 @@ public class TextBox extends Label {
         super(box, text, font, tCol, bCol, sCol);
         this.enabled = false;
         this.cursor=false;
+        this.visible = false;
     }
 
     public void update() {
-        /*if (this.isClicked()) {
-            enabled = true;
-        } else {
-            enabled = false;
-        }
-
-        if (enabled) {
-            String s = Kb.getChars();
-            if (s != "") {
-                if ("BACK".equals(s)) {
-                    text = text.substring(0, text.length() - 1);
-                } else if ("SPACE".equals(s)) {
-                    text = text + " ";
-                } else if (s.length() < 2) {
-                    text += s;
-                }
-            }
-        }*/
+        if (visible){
         if(TimerHandler.isTimeUp(timer)){
             this.cursor=!this.cursor;
+        }
         }
     }
 
@@ -59,7 +44,7 @@ public class TextBox extends Label {
                     this.text=this.text.substring(0, this.text.length()-1);
                 }
             }
-            else{
+            else if (s.length()<2) {
                 this.text=this.text.concat(s);
             }
         }
@@ -67,6 +52,7 @@ public class TextBox extends Label {
 
     @Override
     public void draw() {
+        if (visible){
         bgCol.bind();
         GL11.glPushMatrix();
         {
@@ -110,7 +96,7 @@ public class TextBox extends Label {
         }
         GL11.glPopMatrix();
     }
-
+    }
     public boolean isEnabled() {
         return enabled;
     }

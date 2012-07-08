@@ -38,13 +38,13 @@ public class Label {
     }
 
     public boolean isClicked() {
-        if (shape.isHit(Ms.getX(), Ms.getY())&& Ms.isClicked()) {
+        if (shape.isHit(Ms.getX(), Ms.getY())){
             return true;
         } else {
             return false;
         }
     }
-
+    
     public void draw() {
         bgCol.bind();
         GL11.glPushMatrix();
