@@ -23,24 +23,22 @@ public class Box {
     }
 
     public boolean isHit(float x, float y) {
-        if (x>20){
         if ((this.x < x) && (this.x + this.w > x)) {
             if ((this.y < y) && (this.y + this.h >y)) {
                 return true;
             }
-        }
-        }
+        }   
         return false;
     }
 
-    public boolean collidesWith(Box other) {
+    /*public boolean collidesWith(Box other) {
         if (((other.x >= this.x) && (other.x <= this.x + this.w)) || ((other.x + other.w >= this.x) && (other.x + other.w <= this.x + this.w))|| ((other.x <= this.x) && (other.x + other.w >= this.x + this.w))) {
             if (((other.y  >= this.y ) && (other.y <= this.y + this.h)) || ((other.y + other.h >= this.y) && (other.y + other.h <= this.y + this.h))||((this.y>=other.y)&&(this.y+this.h <= other.y+other.h))) {
                 return true;
             } 
         }
         return false;
-    }
+    }*/
 
     public void setPosition(float x, float y) {
         this.x = x;
