@@ -35,8 +35,11 @@ public class Tester {
             Ms.update(0);
           
             String s = Kb.getChars();
+
+
             if (!s.equals("")){
                 System.out.print(s);
+
             }
 
 
