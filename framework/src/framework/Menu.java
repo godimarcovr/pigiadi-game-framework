@@ -27,19 +27,50 @@ public class Menu {
         this.comps.add(lab);
     }
 
+
+
     public void verticalCompile(float percX,float percY) {
+
         float vSpace = this.shape.h / comps.size();
-        float hComp = vSpace*percY;
-        float wComp = percX*this.shape.w;
+        float hComp = vSpace * percY;
+        float wComp = percX * this.shape.w;
         float vLeap = (vSpace - hComp) / 2;
         float hLeap = (this.shape.w - wComp) / 2;
-        System.out.println(hLeap);
         for (int i = 0; i < comps.size(); i++) {
             Label label = comps.get(i);
             label.setPosition(this.shape.x + hLeap, this.shape.y + vLeap + (vSpace * i));
             label.setDimension(wComp, hComp);
         }
     }
+
+
+    public void update(String read) {
+        for (Label label : comps) {
+            if (label instanceof TextBox) {
+                TextBox tlabel = (TextBox) label;
+                if (tlabel.isClicked() && !tlabel.isEnabled()) {
+                    tlabel.setEnabled(true);
+                } else if (Ms.isClicked() && !label.isHover()) {
+                    tlabel.setEnabled(false);
+                } else if (tlabel.isEnabled()) {
+                    tlabel.upText(read);
+                }
+                tlabel.update();
+            } else if (label instanceof Button) {
+                Button blabel = (Button) label;
+                if (blabel.isClicked()) {
+                    blabel.setEnabled(true);
+                } else if (!blabel.isClicked() && blabel.isEnabled() && blabel.isHover()) {
+                    System.out.print("Sono stato cliccato" + "\n");
+                    blabel.setEnabled(false);
+                } else if (Ms.isClicked() && !blabel.isClicked()) {
+                    blabel.setEnabled(false);
+                }
+            }
+
+        }
+    }
+
 
     public void horizontalCompile(float percX,float percY) {
         float hSpace = this.shape.w / comps.size();
@@ -54,6 +85,7 @@ public class Menu {
             label.setDimension(wComp, hComp);
         }
     }
+
 
     public void draw() {
         Color.white.bind();
