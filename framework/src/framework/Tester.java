@@ -60,7 +60,7 @@ public class Tester {
         this.menuTest.addComp(labTest);
         this.menuTest.addComp(textTest);
         this.menuTest.addComp(butTest);
-        this.menuTest.compile(0.5f,0.5f);
+        this.menuTest.horizontalCompile(0.5f,0.5f);
 
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
