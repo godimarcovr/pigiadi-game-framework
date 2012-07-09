@@ -25,19 +25,17 @@ public class Tester {
     long lastFrame;
     int fps;
     long lastFPS;
-     
     Button butTest;
     Label labTest;
     TextBox textTest;
-    
+
     public Tester() {
-        
     }
 
-    public void start(){
+    public void start() {
 
         // init OpenGL here
-        boolean success=Window.initialise(800,600);
+        boolean success = Window.initialise(800, 600);
         try {
             Display.create();
         } catch (LWJGLException ex) {
@@ -47,16 +45,16 @@ public class Tester {
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
         lastFPS = getTime(); // call before loop to initialise fps timer
-        
-        int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 50);
+
+        int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 50);
         //this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
-        this.textTest=new TextBox(new Box(200,100,500,100),"",f1,Color.red,Color.cyan,Color.lightGray);
+        this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
         this.textTest.visible = true;
-        this.butTest=new Button(new Box(300,400,500,100),"OK",f1,Color.red,Color.cyan,Color.lightGray,Color.green);
+        this.butTest = new Button(new Box(300, 400, 500, 100), "OK", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
         this.butTest.visible = true;
         this.textTest.visible = true;
         TimerHandler.createTimer();
-        
+
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
             Ms.update(delta);
@@ -69,14 +67,12 @@ public class Tester {
             Display.update();
             Display.sync(60); // cap fps to 60fps
         }
-        
+
 
 
         Display.destroy();
     }
-    
-    
-    
+
     private void initGL() {
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -109,7 +105,7 @@ public class Tester {
         }
         fps++;
     }
-    
+
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         //this.labTest.draw();
@@ -119,30 +115,29 @@ public class Tester {
 
     public void update(int delta) {
         String read = Kb.getChars();
-        
-        
-        if(textTest.isHover()&&!textTest.isEnabled()){
-            textTest.setEnabled(true);           
-        } else if (textTest.isHover()) {
+
+
+        if (textTest.isClicked() && !textTest.isEnabled()) {
+            textTest.setEnabled(true);
+        } else if (Ms.isClicked() && !textTest.isHover()) {  
+            textTest.setEnabled(false);
+        }else if (textTest.isEnabled()) {
             textTest.upText(read);
-            
-        }else {
-           textTest.setEnabled(false); 
         }
-        
-        if(butTest.isClicked()){
-            butTest.setEnabled(true);           
-        }else if(!butTest.isClicked() && butTest.isEnabled()&& butTest.isHover()){
-            System.out.print("Sono stato cliccato"+"\n");
+
+        if (butTest.isClicked()) {
+            butTest.setEnabled(true);
+        } else if (!butTest.isClicked() && butTest.isEnabled() && butTest.isHover()) {
+            System.out.print("Sono stato cliccato" + "\n");
         }
-        if (!butTest.isClicked()){
-           butTest.setEnabled(false); 
+        if (!butTest.isClicked()) {
+            butTest.setEnabled(false);
         }
-        
-        
-        textTest.update();            
-         
-        
+
+
+        textTest.update();
+
+
 
     }
 }
