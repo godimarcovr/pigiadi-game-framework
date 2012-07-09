@@ -15,7 +15,7 @@ import org.newdawn.slick.opengl.TextureImpl;
  */
 public class TextBox extends Label {
     
-    public boolean enabled, visible;
+    private boolean enabled;
     public int timer;
     public boolean cursor;
 
@@ -23,7 +23,7 @@ public class TextBox extends Label {
         super(box, text, font, tCol, bCol, sCol);
         this.enabled = false;
         this.cursor=false;
-        this.visible = false;
+        
     }
 
     public void update() {
@@ -35,6 +35,7 @@ public class TextBox extends Label {
     }
 
     public void upText(String s){
+       
         if(s.equals("SPACE")){
             this.text=this.text.concat(" ");
         }
