@@ -27,7 +27,7 @@ public class Menu {
         this.comps.add(lab);
     }
 
-    public void compile(float percX,float percY) {
+    public void verticalCompile(float percX,float percY) {
         float vSpace = this.shape.h / comps.size();
         float hComp = vSpace*percY;
         float wComp = percX*this.shape.w;
@@ -37,6 +37,20 @@ public class Menu {
         for (int i = 0; i < comps.size(); i++) {
             Label label = comps.get(i);
             label.setPosition(this.shape.x + hLeap, this.shape.y + vLeap + (vSpace * i));
+            label.setDimension(wComp, hComp);
+        }
+    }
+
+    public void horizontalCompile(float percX,float percY) {
+        float hSpace = this.shape.w / comps.size();
+        float hComp = this.shape.h*percY;
+        float wComp = percX*hSpace;
+        float vLeap = (this.shape.w - hComp) / 2;
+        float hLeap = (hSpace - wComp) / 2;
+        System.out.println(hLeap);
+        for (int i = 0; i < comps.size(); i++) {
+            Label label = comps.get(i);
+            label.setPosition(this.shape.x + hLeap + (hSpace * i),this.shape.y + vLeap);
             label.setDimension(wComp, hComp);
         }
     }
