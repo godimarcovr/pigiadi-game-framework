@@ -51,7 +51,7 @@ public class Tester {
         this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
         this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
         
-        this.butTest = new Button(new Box(300, 400, 500, 100), "OK", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
+        this.butTest = new Button(new Box(300, 400, 0, 200), "OK", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
         this.textTest.visible = true;
         this.butTest.visible = true;
         this.textTest.visible = true;
@@ -61,6 +61,7 @@ public class Tester {
         this.menuTest.addComp(textTest);
         this.menuTest.addComp(butTest);
         this.menuTest.horizontalCompile(0.5f,0.5f);
+
 
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
@@ -115,37 +116,12 @@ public class Tester {
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        //this.labTest.draw();
-        //this.textTest.draw();
-        //this.butTest.draw();
         this.menuTest.draw();
     }
 
     public void update(int delta) {
         String read = Kb.getChars();
-
-        /*
-        if (textTest.isClicked() && !textTest.isEnabled()) {
-            textTest.setEnabled(true);
-        } else if (Ms.isClicked() && !textTest.isHover()) {  
-            textTest.setEnabled(false);
-        }else if (textTest.isEnabled()) {
-            textTest.upText(read);
-        }
-
-        if (butTest.isClicked()) {
-            butTest.setEnabled(true);
-        } else if (!butTest.isClicked() && butTest.isEnabled() && butTest.isHover()) {
-            System.out.print("Sono stato cliccato" + "\n");
-            
-            butTest.setEnabled(false);
-        }else if (Ms.isClicked() && !butTest.isClicked()){
-            butTest.setEnabled(false);
-        }
-        textTest.update();
-         */
-
-
+        menuTest.update(read);
 
     }
 }
