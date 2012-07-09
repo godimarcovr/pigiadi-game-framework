@@ -129,10 +129,12 @@ public class Tester {
             butTest.setEnabled(true);
         } else if (!butTest.isClicked() && butTest.isEnabled() && butTest.isHover()) {
             System.out.print("Sono stato cliccato" + "\n");
-        }
-        if (!butTest.isClicked()) {
+            
+            butTest.setEnabled(false);
+        }else if (Ms.isClicked() && !butTest.isClicked()){
             butTest.setEnabled(false);
         }
+
 
 
         textTest.update();
