@@ -16,11 +16,15 @@ public class Button extends Label {
 
     Color bSelColor;
     boolean enabled;
+    String id;
 
-    public Button(Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor) {
+    public Button(String id, Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor) {
         super(box, text, font, tCol, bCol, sCol);
         this.bSelColor = bSelColor;
+        this.id = id;
     }
+    
+    
 
     @Override
     public void draw() {
