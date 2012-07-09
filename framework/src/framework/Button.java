@@ -16,7 +16,7 @@ public class Button extends Label{
     Color bSelColor;
      boolean enabled;
 
-    public Button(Color bSelColor, Box box, String text, int font, Color tCol, Color bCol, Color sCol) {
+    public Button(Box box, String text, int font, Color tCol, Color bCol, Color sCol,Color bSelColor) {
         super(box, text, font, tCol, bCol, sCol);
         this.bSelColor = bSelColor;
     }
@@ -41,7 +41,7 @@ public void draw() {
                 GL11.glVertex2f(0, this.shape.h);
             }
             GL11.glEnd();
-            if (enabled){
+            if (!enabled){
             borderCol.bind();
             }
             else{
