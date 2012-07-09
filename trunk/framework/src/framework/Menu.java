@@ -56,12 +56,13 @@ public class Menu {
                     tlabel.upText(read);
                 }
                 tlabel.update();
+                
             } else if (label instanceof Button) {
                 Button blabel = (Button) label;
                 if (blabel.isClicked()) {
                     blabel.setEnabled(true);
                 } else if (!blabel.isClicked() && blabel.isEnabled() && blabel.isHover()) {
-                    System.out.print("Sono stato cliccato" + "\n");
+                    buttonUpdate(blabel);
                     blabel.setEnabled(false);
                 } else if (Ms.isClicked() && !blabel.isClicked()) {
                     blabel.setEnabled(false);
@@ -70,8 +71,14 @@ public class Menu {
 
         }
     }
-
-
+    
+    private void buttonUpdate(Button blabel){
+        if (blabel.id == "bOk"){
+            System.out.print("Ok"+"\n");
+         }else if (blabel.id == "bExit"){
+        System.exit(0);
+        }
+}
     public void horizontalCompile(float percX,float percY) {
         float hSpace = this.shape.w / comps.size();
         float hComp = this.shape.h*percY;

@@ -26,7 +26,7 @@ public class Tester {
     int fps;
     long lastFPS;
     Button butTest;
-    Label labTest;
+    Button butTest2;
     TextBox textTest;
     Menu menuTest;
 
@@ -48,18 +48,19 @@ public class Tester {
         lastFPS = getTime(); // call before loop to initialise fps timer
 
         int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 15);
-        this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
+       
         this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
-        
-        this.butTest = new Button(new Box(300, 400, 0, 200), "OK", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
+         this.butTest = new Button("bOk",new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
+        this.butTest2 = new Button("bExit",new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
+ 
         this.textTest.visible = true;
         this.butTest.visible = true;
-        this.textTest.visible = true;
+        this.butTest2.visible = true;
 
         this.menuTest=new Menu(new Box(50,50,450,450));
-        this.menuTest.addComp(labTest);
-        this.menuTest.addComp(textTest);
         this.menuTest.addComp(butTest);
+        this.menuTest.addComp(textTest);
+        this.menuTest.addComp(butTest2);
         this.menuTest.horizontalCompile(0.5f,0.5f);
 
 
