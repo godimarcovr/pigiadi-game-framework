@@ -132,7 +132,7 @@ public class Tester {
         
         if(butTest.isClicked()){
             butTest.setEnabled(true);           
-        }else if(!butTest.isClicked() && butTest.isEnabled()){
+        }else if(!butTest.isClicked() && butTest.isEnabled()&& butTest.isHover()){
             System.out.print("Sono stato cliccato"+"\n");
         }
         if (!butTest.isClicked()){
