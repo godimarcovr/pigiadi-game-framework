@@ -6,55 +6,25 @@ package framework;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.TextureImpl;
 
 /**
  *
  * @author matteo
  */
-public class Label {
-    boolean visible;
-    Box shape;
-    String text;
-    TrueTypeFont font;
-    Color textCol, borderCol, bgCol;
+public class Button extends Label{
+    Color bSelColor;
+     boolean enabled;
 
-    public Label(Box box, String text,int font, Color tCol,Color bCol,Color sCol) {
-        this.text = text;
-        this.shape=box;
-        this.font=FontHandler.getFont(font);
-        this.textCol=tCol;
-        this.borderCol=bCol;
-        this.bgCol=sCol;
+    public Button(Color bSelColor, Box box, String text, int font, Color tCol, Color bCol, Color sCol) {
+        super(box, text, font, tCol, bCol, sCol);
+        this.bSelColor = bSelColor;
     }
     
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public boolean isClicked() {
-        if (shape.isHit(Ms.getX(), Ms.getY())&&Ms.isClicked()){
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public boolean isHover() {
-        if (shape.isHit(Ms.getX(), Ms.getY())){
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public void draw() {
+    @Override
+public void draw() {
         if (visible){
+            
         bgCol.bind();
         GL11.glPushMatrix();
         {
@@ -71,9 +41,13 @@ public class Label {
                 GL11.glVertex2f(0, this.shape.h);
             }
             GL11.glEnd();
-
+            if (enabled){
             borderCol.bind();
-
+            }
+            else{
+            bSelColor.bind();
+            }
+            
             GL11.glBegin(GL11.GL_LINE_LOOP);
             {
                 GL11.glVertex2f(0, 0);
@@ -99,22 +73,18 @@ public class Label {
         GL11.glPopMatrix();
         }
     }
-
-    public float fontCenterPosX() {
-        return shape.w / 2 - font.getWidth(this.text) / 2;
+    
+    
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public float fontCenterPosY() {
-        return shape.h / 2 - font.getLineHeight() / 2;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-
+    
+    
+    
+    
+    
 }
