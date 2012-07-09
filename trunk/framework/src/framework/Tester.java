@@ -26,6 +26,7 @@ public class Tester {
     int fps;
     long lastFPS;
      
+    Button butTest;
     Label labTest;
     TextBox textTest;
     
@@ -50,7 +51,9 @@ public class Tester {
         int f1=FontHandler.createFont("Times New Roman", Font.PLAIN, 50);
         //this.labTest=new Label(new Box(50,50,500,100),"TEST!!!!",f1,Color.red,Color.cyan,Color.lightGray);
         this.textTest=new TextBox(new Box(200,100,500,100),"",f1,Color.red,Color.cyan,Color.lightGray);
-        //this.textTest.setEnabled(true);
+        this.textTest.visible = true;
+        this.butTest=new Button(new Box(300,400,500,100),"OK",f1,Color.red,Color.cyan,Color.lightGray,Color.green);
+        this.butTest.visible = true;
         this.textTest.visible = true;
         TimerHandler.createTimer();
         
@@ -111,6 +114,7 @@ public class Tester {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         //this.labTest.draw();
         this.textTest.draw();
+        this.butTest.draw();
     }
 
     public void update(int delta) {
@@ -125,6 +129,16 @@ public class Tester {
         }else {
            textTest.setEnabled(false); 
         }
+        
+        if(butTest.isClicked()){
+            butTest.setEnabled(true);           
+        }else if(!butTest.isClicked() && butTest.isEnabled()){
+            System.out.print("Sono stato cliccato"+"\n");
+        }
+        if (!butTest.isClicked()){
+           butTest.setEnabled(false); 
+        }
+        
         
         textTest.update();            
          
