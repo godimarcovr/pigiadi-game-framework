@@ -39,12 +39,14 @@ public class Entity {
     
     
     public void move(int delta){
+        float dex=(delta * dx) / 1000;
+        float dey=(delta * dy) / 1000;
         for (Vector object : this.p.getVertices()) {
-            object.x = object.x += (delta * dx) / 1000;
-            object.y = object.y += (delta * dy) / 1000;
+            object.x += dex;
+            object.y += dey;
         }
-        //p.findCenter();
-        //???????????????????
+        this.p.xCenter+=dex;
+        this.p.yCenter+=dey;
     }
     
     public boolean collides(Entity e){
