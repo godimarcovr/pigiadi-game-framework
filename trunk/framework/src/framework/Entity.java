@@ -43,7 +43,8 @@ public class Entity {
             object.x = object.x += (delta * dx) / 1000;
             object.y = object.y += (delta * dy) / 1000;
         }
-        p.findCenter();
+        //p.findCenter();
+        //???????????????????
     }
     
     public boolean collides(Entity e){
@@ -89,7 +90,7 @@ public class Entity {
     
     public boolean collidesNext(Entity e, int delta){
         Entity eNew = new Entity();
-        eNew = e;
+        eNew = e;//????????????clone?
         eNew.move(delta);
         if (this.collides(eNew)){
             eNew.move(-delta);
