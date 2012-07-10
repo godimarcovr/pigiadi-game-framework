@@ -26,6 +26,12 @@ public class Poly {
 		}
 	}
 
+        public static Poly createRect(float w, float h){
+            Poly p = new Poly(4, 30);
+            p.setVertices(new Vector[]{new Vector(0, 0), new Vector(w, 0), new Vector(w, h), new Vector(0, h)});
+            return p;
+        }
+
 	public void Transform(Vector position, double rotation) {
 		translate((int) position.x, (int) position.y);
 		rotate(rotation);
