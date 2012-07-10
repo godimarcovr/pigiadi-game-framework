@@ -31,7 +31,13 @@ public class Entity {
        p.translate(pos.x, pos.y);
        // p.setVertices(new Vector[]{new Vector(0, 0), new Vector(40, 0), new Vector(40, 40), new Vector(0, 40)});
     }
-    
+        public Entity(Position pos, Vector[] v) {
+       this.pos = pos;
+       p = new Poly(v.length, 30);
+       p.setVertices(v);
+       p.translate(pos.x, pos.y);
+       // p.setVertices();
+    }
     
     
     public void move(float dX, float dY){
