@@ -149,7 +149,15 @@ public class Poly {
 	}
         
         public Vector[] getVertices(){
-        return vertices;
+            return vertices;
+        }
+
+        public Vector[] getCloneVertices(){
+            Vector[] ret=new Vector[vertices.length];
+            for (int i = 0; i < vertices.length; i++) {
+                ret[i]=new Vector(vertices[i].x,vertices[i].y);
+            }
+            return ret;
         }
         
         public void setVertices(Vector[] v){

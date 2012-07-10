@@ -92,7 +92,7 @@ public class Entity {
 
     @Override
     protected Entity clone() {
-        return new Entity(new Position(this.p.xCenter, this.p.yCenter), this.p.getVertices());
+        return new Entity(new Position(this.p.xCenter, this.p.yCenter), this.p.getCloneVertices());
     }
 
     public boolean collidesNext(Entity e, int delta) {
