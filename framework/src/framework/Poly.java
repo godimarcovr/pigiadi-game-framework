@@ -145,7 +145,5 @@ public class Poly {
             vertices = v;
         }
         
-        public void setPosition(float x, float y){
-            
-        }
+
 }

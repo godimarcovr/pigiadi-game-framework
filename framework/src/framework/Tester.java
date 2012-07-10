@@ -48,7 +48,7 @@ public class Tester {
             ex.printStackTrace();
         }
         e = new Entity(new Position(50, 60));
-        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(0, 0), new Vector(40, 0), new Vector(40, 40), new Vector(0, 40)});
+        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(0, 20), new Vector(10, 2), new Vector(40, 40), new Vector(0, 40)});
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
@@ -111,18 +111,17 @@ public class Tester {
         this.menuTest.draw();
         }else{
             e.draw();
-        //    if (e.collides(e2)){
-                e2.draw();
-        //      }
+            e2.draw();
+
         }
     }
 
     public void update(int delta) {
         String read = Kb.getChars();
         if(start){
-        e.move(0.1f, 0.5f);
-           if (e.collides(e2)){
-                System.out.print("asd"+"\n");
+        
+           if (!e.collides(e2)){
+               e.move(1f, 2f);
               }
         }
         menuTest.update(read);
