@@ -127,7 +127,7 @@ public class Tester {
            if (!e.collides(e2)){
                if (Kb.isPressed("S")){
                    e.dy = 100;
-                   if (e.collidesNext(e2, delta)){
+                   if (e2.collidesNext(e, delta)){
                        e.dy = 0;
                    }
                }else {
