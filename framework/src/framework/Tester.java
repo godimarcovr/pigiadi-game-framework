@@ -53,7 +53,7 @@ public class Tester {
         this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
             @Override
              public void run(){
-                System.out.println("MuroLadro");
+                System.out.println(Window.game.textTest.text);
              }
          };
         this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
