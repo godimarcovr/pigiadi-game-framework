@@ -48,7 +48,9 @@ public class Tester {
             ex.printStackTrace();
         }
         e = new Entity(new Position(50, 60));
-        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(0, 20), new Vector(10, 2), new Vector(40, 40), new Vector(0, 40)});
+        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(200, 40), new Vector(200, 200), new Vector(40, 40), new Vector(100, 40)});
+        e.dx = 0;
+        e.dy = 0;
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
@@ -60,6 +62,7 @@ public class Tester {
             TimerHandler.update(delta);
             updateFPS();
 
+            update(delta);
             update(delta);
             renderGL();
 
@@ -119,9 +122,20 @@ public class Tester {
     public void update(int delta) {
         String read = Kb.getChars();
         if(start){
+            
         
            if (!e.collides(e2)){
-               e.move(1f, 2f);
+               if (Kb.isPressed("S")){
+                   e.dy = 100;
+               }else {
+                   e.dy = 0;
+               }             
+               if (Kb.isPressed("D")){
+                   e.dx = 100;
+               }else {
+                   e.dx = 0;
+               }
+               e.move(delta);
               }
         }
         menuTest.update(read);

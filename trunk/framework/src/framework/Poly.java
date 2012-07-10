@@ -8,6 +8,11 @@ public class Poly {
 	private int count = 0;
 	private Vector vertices[];
 
+    public Poly() {
+    }
+
+        
+        
 	public Poly(int count, double radius) {
 		this.count = count;
 		double a;
@@ -146,4 +151,5 @@ public class Poly {
         }
         
 
+            
 }
