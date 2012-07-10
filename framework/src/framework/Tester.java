@@ -15,6 +15,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.Color;
+import org.jbox2d.collision.shapes.PolygonShape;
 
 /**
  *
@@ -22,6 +23,7 @@ import org.newdawn.slick.Color;
  */
 public class Tester {
 
+  
     long lastFrame;
     int fps;
     long lastFPS;
@@ -29,12 +31,15 @@ public class Tester {
     Button butTest2;
     TextBox textTest;
     Menu menuTest;
+    boolean start;
+    Entity e, e2;
 
     public Tester() {
     }
 
     public void start() {
-
+        
+        
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
         try {
@@ -42,6 +47,8 @@ public class Tester {
         } catch (LWJGLException ex) {
             ex.printStackTrace();
         }
+        e = new Entity(new Position(50, 60));
+        e2 = new Entity(new Position(100,200));
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
@@ -100,11 +107,24 @@ public class Tester {
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        if (!start){
         this.menuTest.draw();
+        }else{
+            e.draw();
+        //    if (e.collides(e2)){
+                e2.draw();
+        //      }
+        }
     }
 
     public void update(int delta) {
         String read = Kb.getChars();
+        if(start){
+        e.move(0.1f, 0.5f);
+           if (e.collides(e2)){
+                System.out.print("asd"+"\n");
+              }
+        }
         menuTest.update(read);
 
     }
@@ -116,8 +136,7 @@ public class Tester {
         this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
             @Override
              public void run(){
-                butTest2.setText(textTest.text);
-
+                start = true;
              }
          };
         this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
