@@ -3,14 +3,7 @@
  * and open the template in the editor.
  */
 package framework;
-import framework.Ms.*;
-import java.awt.Font;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.Color;
@@ -27,7 +20,7 @@ public class Entity {
 
     public Entity(Position pos) {
        this.pos = pos;
-       p = new Poly(5, 30);
+       p = new Poly(18, 30);
        p.translate(pos.x, pos.y);
        // p.setVertices(new Vector[]{new Vector(0, 0), new Vector(40, 0), new Vector(40, 40), new Vector(0, 40)});
     }
