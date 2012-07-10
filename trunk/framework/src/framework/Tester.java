@@ -48,7 +48,7 @@ public class Tester {
             ex.printStackTrace();
         }
         e = new Entity(new Position(50, 60));
-        e2 = new Entity(new Position(100,200));
+        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(0, 0), new Vector(40, 0), new Vector(40, 40), new Vector(0, 40)});
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
