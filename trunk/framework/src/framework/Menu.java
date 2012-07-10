@@ -72,6 +72,7 @@ public class Menu {
         }
     }
     
+
     public void horizontalCompile(float percX,float percY) {
         float hSpace = this.shape.w / comps.size();
         float hComp = this.shape.h*percY;
