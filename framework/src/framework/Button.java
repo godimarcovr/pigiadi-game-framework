@@ -15,15 +15,16 @@ import org.newdawn.slick.opengl.TextureImpl;
 public class Button extends Label {
 
     Color bSelColor;
+    Color sSelColor;
     boolean enabled;
     String id;
 
-    public Button(String id, Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor) {
+    public Button(String id, Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor,Color sSelColor) {
         super(box, text, font, tCol, bCol, sCol);
         this.bSelColor = bSelColor;
+        this.sSelColor = sSelColor;
         this.id = id;
-    }
-    
+    }  
     
 
     @Override
@@ -35,6 +36,11 @@ public class Button extends Label {
             {
                 GL11.glTranslatef(this.shape.x, this.shape.y, 0);
 
+                if (!enabled) {
+                    bgCol.bind();
+                } else {
+                    sSelColor.bind();
+                }
                 GL11.glBegin(GL11.GL_QUADS);
                 {
                     GL11.glVertex2f(0, 0);
@@ -85,4 +91,9 @@ public class Button extends Label {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+    public void run(){
+        
+    }
+
 }

@@ -62,7 +62,7 @@ public class Menu {
                 if (blabel.isClicked()) {
                     blabel.setEnabled(true);
                 } else if (!blabel.isClicked() && blabel.isEnabled() && blabel.isHover()) {
-                    buttonUpdate(blabel);
+                    blabel.run();
                     blabel.setEnabled(false);
                 } else if (Ms.isClicked() && !blabel.isClicked()) {
                     blabel.setEnabled(false);

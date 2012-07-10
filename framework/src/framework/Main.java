@@ -16,6 +16,7 @@ public class Main {
      */
     public static void main(String[] argv) {
         Tester test = new Tester();
+        Window.game=test;
         test.start();
     }
 }
