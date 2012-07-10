@@ -72,13 +72,6 @@ public class Menu {
         }
     }
     
-    private void buttonUpdate(Button blabel){
-        if (blabel.id == "bOk"){
-            System.out.print("Ok"+"\n");
-         }else if (blabel.id == "bExit"){
-        System.exit(0);
-        }
-}
     public void horizontalCompile(float percX,float percY) {
         float hSpace = this.shape.w / comps.size();
         float hComp = this.shape.h*percY;

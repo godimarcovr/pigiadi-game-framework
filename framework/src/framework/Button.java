@@ -19,11 +19,10 @@ public class Button extends Label {
     boolean enabled;
     String id;
 
-    public Button(String id, Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor,Color sSelColor) {
+    public Button(Box box, String text, int font, Color tCol, Color bCol, Color sCol, Color bSelColor,Color sSelColor) {
         super(box, text, font, tCol, bCol, sCol);
         this.bSelColor = bSelColor;
         this.sSelColor = sSelColor;
-        this.id = id;
     }  
     
 
