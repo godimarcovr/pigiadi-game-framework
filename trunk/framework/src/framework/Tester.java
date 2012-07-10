@@ -42,38 +42,10 @@ public class Tester {
         } catch (LWJGLException ex) {
             ex.printStackTrace();
         }
-
+        menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
         lastFPS = getTime(); // call before loop to initialise fps timer
-
-        int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 15);
-       
-        this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
-        this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
-            @Override
-             public void run(){
-                butTest2.setText(textTest.text);
-
-             }
-         };
-        this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
-            @Override
-             public void run(){
-                System.exit(0);
-             }
-         };
- 
-        this.textTest.visible = true;
-        this.butTest.visible = true;
-        this.butTest2.visible = true;
-
-        this.menuTest=new Menu(new Box(50,50,450,450));
-        this.menuTest.addComp(butTest);
-        this.menuTest.addComp(textTest);
-        this.menuTest.addComp(butTest2);
-        this.menuTest.verticalCompile(0.5f,0.5f);
-
 
         while (!Display.isCloseRequested()) {
             int delta = getDelta();
@@ -135,5 +107,33 @@ public class Tester {
         String read = Kb.getChars();
         menuTest.update(read);
 
+    }
+    
+    public void menuInitialize(){
+        int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 15);
+        this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
+        this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+            @Override
+             public void run(){
+                butTest2.setText(textTest.text);
+
+             }
+         };
+        this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+            @Override
+             public void run(){
+                System.exit(0);
+             }
+         };
+ 
+        this.textTest.visible = true;
+        this.butTest.visible = true;
+        this.butTest2.visible = true;
+
+        this.menuTest=new Menu(new Box(50,50,450,450));
+        this.menuTest.addComp(butTest);
+        this.menuTest.addComp(textTest);
+        this.menuTest.addComp(butTest2);
+        this.menuTest.verticalCompile(0.5f,0.5f);
     }
 }
