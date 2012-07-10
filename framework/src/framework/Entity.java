@@ -29,8 +29,8 @@ public class Entity {
        p = new Poly(18, 30);
        p.translate(pos.x, pos.y);
      }
-        public Entity(Position pos, Vector[] v) {
-            visible = true;
+    public Entity(Position pos, Vector[] v) {
+       visible = true;
        this.pos = pos;
        p = new Poly(v.length, 30);
        p.setVertices(v);
@@ -89,10 +89,15 @@ public class Entity {
     public float getDy() {
         return dy;
     }
-    
+
+    @Override
+    protected Entity clone(){
+        return new Entity(new Position(this.p.xCenter,this.p.yCenter),this.p.getVertices());
+    }
+
+
     public boolean collidesNext(Entity e, int delta){
-        Entity eNew = new Entity();
-        eNew = e;//????????????clone?
+        Entity eNew = this.clone();
         eNew.move(delta);
         if (this.collides(eNew)){
             eNew.move(-delta);
