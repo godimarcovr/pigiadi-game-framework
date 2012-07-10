@@ -50,8 +50,18 @@ public class Tester {
         int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 15);
        
         this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
-         this.butTest = new Button("bOk",new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
-        this.butTest2 = new Button("bExit",new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green);
+        this.butTest = new Button("bOk",new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+            @Override
+             public void run(){
+                System.out.println("MuroLadro");
+             }
+         };
+        this.butTest2 = new Button("bExit",new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+            @Override
+             public void run(){
+                System.exit(0);
+             }
+         };
  
         this.textTest.visible = true;
         this.butTest.visible = true;
@@ -61,7 +71,7 @@ public class Tester {
         this.menuTest.addComp(butTest);
         this.menuTest.addComp(textTest);
         this.menuTest.addComp(butTest2);
-        this.menuTest.horizontalCompile(0.5f,0.5f);
+        this.menuTest.verticalCompile(0.5f,0.5f);
 
 
         while (!Display.isCloseRequested()) {

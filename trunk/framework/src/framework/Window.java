@@ -4,8 +4,6 @@
  */
 package framework;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -17,6 +15,7 @@ import org.lwjgl.opengl.DisplayMode;
 public class Window {
 
     public static int w, h;
+    public static Tester game;
 
     public static boolean initialise(int width, int heigth) {
         try {
