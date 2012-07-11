@@ -51,8 +51,8 @@ public class Tester {
         }
         eList = new LinkedList<Entity>();
         e = new Entity(new Position(20, 20));
-        e2 = new Entity(new Position(100,100),new Vector[]{new Vector(100,200), new Vector(200, 100), new Vector(200, 200), new Vector(100, 200)});
-        e3 = new Entity(new Position(100,100),new Vector[]{new Vector(100,0), new Vector(200, 80), new Vector(200, 0), new Vector(100, 0)});
+        e2 = new Entity(new Position(200,200),new Vector[]{new Vector(200,300), new Vector(300, 200), new Vector(300, 300), new Vector(200, 300)});
+        e3 = new Entity(new Position(200,200),new Vector[]{new Vector(200,100), new Vector(300, 180), new Vector(300, 100), new Vector(200, 0)});
         e.dx = 0;
         e.dy = 0;
         e2.dx= -50;
@@ -133,7 +133,27 @@ public class Tester {
     public void update(int delta) {
         String read = Kb.getChars();
         if(start){
-            
+                                 LinkedList<Entity> eLnew = new LinkedList<Entity>();               
+                
+                for (Entity ent : eList) {
+
+                    for (Entity entity : eList) {
+                        if (entity != ent){
+                            eLnew.add(e);
+                        }
+                    }
+                    for (Entity ent1 : eLnew) {
+                        if (ent!=ent1){
+                        if (ent1.collidesNext(ent, delta)){
+                            ent1.dx =0;
+                            ent1.dy = 0;
+                        }else{
+                            ent.move(delta);
+                        }
+                        }
+                    }
+                    eLnew.clear();
+                    
 
        /*     if (Kb.isPressed("S")){
                    e.dy = 100;  
@@ -160,27 +180,7 @@ public class Tester {
                }else {
                    e.dy = 0;
                }
-                     LinkedList<Entity> eLnew = new LinkedList<Entity>();               
-                
-                for (Entity ent : eList) {
 
-                    for (Entity entity : eList) {
-                        if (entity != ent){
-                            eLnew.add(e);
-                        }
-                    }
-                    for (Entity ent1 : eLnew) {
-                        if (ent!=ent1){
-                        if (ent1.collidesNext(ent, delta)){
-                            ent1.dx =0;
-                            ent1.dy = 0;
-                        }else{
-                            ent.move(delta);
-                        }
-                        }
-                    }
-                    eLnew.clear();
-                    
             }
                
   
