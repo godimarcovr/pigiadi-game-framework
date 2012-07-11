@@ -15,27 +15,32 @@ import org.newdawn.slick.Color;
 public class Entity {
 
     boolean visible;
+    Color color;
     Position pos;
     Poly p;
     float dx, dy;
+
+    public Entity(Position pos, Vector[] v) {
+       color = Color.white;
+       visible = true;
+       this.pos = pos;
+       p = new Poly(v.length, 30);
+       p.setVertices(v);
+      // p.translate(pos.x, pos.y);
+    }
 
     public Entity() {
     }
 
     public Entity(Position pos) {
-        visible = true;
-        this.pos = pos;
-        p = new Poly(18, 30);
-        p.translate(pos.x, pos.y);
-    }
 
-    public Entity(Position pos, Vector[] v) {
-        visible = true;
-        this.pos = pos;
-        p = new Poly(v.length, 30);
-        p.setVertices(v);
-        p.translate(pos.x, pos.y);
-    }
+         color = Color.white;
+       visible = true;
+       this.pos = pos;
+       p = new Poly(18, 30);
+   //    p.translate(pos.x, pos.y);
+     }
+
 
     public void move(int delta) {
         float dex = (delta * dx) / 1000;
@@ -43,9 +48,12 @@ public class Entity {
         for (Vector object : this.p.getVertices()) {
             object.x += dex;
             object.y += dey;
+
         }
+
         this.p.xCenter += dex;
         this.p.yCenter += dey;
+
     }
 
     public boolean collides(Entity e) {
@@ -56,22 +64,23 @@ public class Entity {
         return p.collide(p);
     }
 
-    public void draw() {
-        if (visible) {
-            Color.white.bind();
-            GL11.glPushMatrix();
-            GL11.glTranslatef(0, 0, 0);
-            GL11.glBegin(GL11.GL_LINE_LOOP);
-            {
-                for (Vector object : p.getVertices()) {
-                    GL11.glVertex2f(object.x, object.y);
-                }
-
-            }
+    
+    public void draw(){
+        if(visible){
+        
+        color.bind();
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0, 0, 0);
+        GL11.glBegin(GL11.GL_LINE_LOOP);
+        {
+            for (Vector object : p.getVertices()) {
+                GL11.glVertex2f(object.x, object.y);
+              }
             GL11.glEnd();
             GL11.glPopMatrix();
         }
 
+    }
     }
 
     public void setHorizontalMovement(float dx) {
@@ -96,11 +105,26 @@ public class Entity {
     }
 
     public boolean collidesNext(Entity e, int delta) {
-        Entity eNew = this.clone();
+        Entity eNew = new Entity(new Position());
+        Vector[] v = new Vector[e.p.getVertices().length];
+        
+        for (int i = 0; i < v.length; i++) {
+            v[i] = new Vector(e.p.getVertices()[i].x, e.p.getVertices()[i].y);          
+        }
+        
+        eNew.p.setVertices(v);
+        eNew.dx = e.dx;
+        eNew.dy = e.dy;
+        eNew.visible = true;
         eNew.move(delta);
-        if (eNew.collides(e)) {
+        
+        System.out.print(e.p.getVertices()[0].x+" ");
+        System.out.print(eNew.p.getVertices()[0].x+"\n");
+        if (this.collides(eNew)){
             return true;
         }
-        return false;
+            return false;
+        }
+
     }
-}
+

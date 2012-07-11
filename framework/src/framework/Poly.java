@@ -162,6 +162,7 @@ public class Poly {
         
         public void setVertices(Vector[] v){
             vertices = v;
+            findCenter();
         }
         
 
