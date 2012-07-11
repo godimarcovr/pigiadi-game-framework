@@ -107,14 +107,18 @@ public class Entity {
     public boolean collidesNext(Entity e, int delta) {
         Entity eNew = new Entity(new Position());
         Vector[] v = new Vector[e.p.getVertices().length];
+     //   if (eNew.dx !=0|| eNew.dy !=0){
+          eNew.dx = e.dx;
+          eNew.dy = e.dy;
+   //     }
         
         for (int i = 0; i < v.length; i++) {
             v[i] = new Vector(e.p.getVertices()[i].x, e.p.getVertices()[i].y);          
         }
         
         eNew.p.setVertices(v);
-        eNew.dx = e.dx;
-        eNew.dy = e.dy;
+        
+
         eNew.visible = true;
         eNew.move(delta);
         
