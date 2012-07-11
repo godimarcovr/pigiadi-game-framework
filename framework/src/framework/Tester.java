@@ -6,6 +6,7 @@ package framework;
 
 import framework.Ms.*;
 import java.awt.Font;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lwjgl.LWJGLException;
@@ -32,7 +33,8 @@ public class Tester {
     TextBox textTest;
     Menu menuTest;
     boolean start;
-    Entity e, e2;
+    Entity e, e2, e3;
+    LinkedList<Entity> eList;
 
     public Tester() {
     }
@@ -47,12 +49,21 @@ public class Tester {
         } catch (LWJGLException ex) {
             ex.printStackTrace();
         }
+        eList = new LinkedList<Entity>();
         e = new Entity(new Position(20, 20));
         e2 = new Entity(new Position(100,100),new Vector[]{new Vector(100,200), new Vector(200, 100), new Vector(200, 200), new Vector(100, 200)});
+        e3 = new Entity(new Position(100,100),new Vector[]{new Vector(100,0), new Vector(200, 80), new Vector(200, 0), new Vector(100, 0)});
         e.dx = 0;
         e.dy = 0;
-        e2.dx= -100;
-        e2.dy = -100;
+        e2.dx= -50;
+        e2.dy = -50;
+        e3.dx = -50;
+        e3.dy = -50;
+        
+        eList.add(e);
+        eList.add(e2);
+        eList.add(e3);
+
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
@@ -115,7 +126,7 @@ public class Tester {
         }else{
             e.draw();
             e2.draw();
-
+            e3.draw();
         }
     }
 
@@ -149,11 +160,31 @@ public class Tester {
                }else {
                    e.dy = 0;
                }
+                     LinkedList<Entity> eLnew = new LinkedList<Entity>();               
                 
+                for (Entity ent : eList) {
+
+                    for (Entity entity : eList) {
+                        if (entity != ent){
+                            eLnew.add(e);
+                        }
+                    }
+                    for (Entity ent1 : eLnew) {
+                        if (ent!=ent1){
+                        if (ent1.collidesNext(ent, delta)){
+                            ent1.dx =0;
+                            ent1.dy = 0;
+                        }else{
+                            ent.move(delta);
+                        }
+                        }
+                    }
+                    eLnew.clear();
+                    
+            }
+               
   
-               if (!e.collidesNext(e2, delta)){ 
-                e2.move(delta);
-               }
+
 /*
                if (Kb.isPressed("A")){
                    e.dx = -200;
