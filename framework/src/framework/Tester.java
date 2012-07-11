@@ -51,6 +51,8 @@ public class Tester {
         e2 = new Entity(new Position(100,100),new Vector[]{new Vector(100,200), new Vector(200, 100), new Vector(200, 200), new Vector(100, 200)});
         e.dx = 0;
         e.dy = 0;
+        e2.dx= -100;
+        e2.dy = -100;
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
         getDelta(); // call once before loop to initialise lastFrame
@@ -133,7 +135,7 @@ public class Tester {
 
                if (Kb.isPressed("D")){
                    e.dx = 200;
-                 if (e2.collidesNext(e, delta)){
+                 if (e.collidesNext(e2, delta)){
                        e.dx = 0;
                    }
                }else {
@@ -146,6 +148,11 @@ public class Tester {
                    }
                }else {
                    e.dy = 0;
+               }
+                
+  
+               if (!e.collidesNext(e2, delta)){ 
+                e2.move(delta);
                }
 /*
                if (Kb.isPressed("A")){
