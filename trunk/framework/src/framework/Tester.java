@@ -47,8 +47,8 @@ public class Tester {
         } catch (LWJGLException ex) {
             ex.printStackTrace();
         }
-        e = new Entity(new Position(50, 60));
-        e2 = new Entity(new Position(100,200),new Vector[]{new Vector(200, 40), new Vector(200, 200), new Vector(40, 40), new Vector(100, 40)});
+        e = new Entity(new Position(20, 20));
+        e2 = new Entity(new Position(100,100),new Vector[]{new Vector(100,200), new Vector(200, 100), new Vector(200, 200), new Vector(100, 200)});
         e.dx = 0;
         e.dy = 0;
         menuInitialize();//Menu initialize
@@ -61,8 +61,6 @@ public class Tester {
             Ms.update(delta);
             TimerHandler.update(delta);
             updateFPS();
-
-            update(delta);
             update(delta);
             renderGL();
 
@@ -123,27 +121,47 @@ public class Tester {
         String read = Kb.getChars();
         if(start){
             
-        
-           if (!e.collides(e2)){
-               if (Kb.isPressed("S")){
-                   e.dy = 100;
-                   if (e2.collidesNext(e, delta)){
+
+       /*     if (Kb.isPressed("S")){
+                   e.dy = 100;  
+                    if (e2.collidesNext(e, delta)){
                        e.dy = 0;
                    }
                }else {
                    e.dy = 0;
-               }             
+               }             */
+
                if (Kb.isPressed("D")){
-                   e.dx = 100;
-                   if (e.collidesNext(e2, delta)){
+                   e.dx = 200;
+                 if (e2.collidesNext(e, delta)){
                        e.dx = 0;
                    }
                }else {
                    e.dx = 0;
                }
+                if (Kb.isPressed("S")){
+                   e.dy = 200;
+                 if (e2.collidesNext(e, delta)){
+                       e.dy = 0;
+                   }
+               }else {
+                   e.dy = 0;
+               }
+/*
+               if (Kb.isPressed("A")){
+                   e.dx = -200;
+                 if (e2.collidesNext(e, delta)){
+                       e.dx = 0;
+                   }
+               }else {
+                   e.dx = 0;
+               }*/
+ 
+
+
                e.move(delta);
               }
-        }
+        
         menuTest.update(read);
 
     }
