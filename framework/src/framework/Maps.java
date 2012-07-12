@@ -12,13 +12,13 @@ import org.newdawn.slick.Color;
  *
  * @author matteo
  */
-public class Map {
+public class Maps {
 
     ArrayList<Element> mp;
     Matrix world;
     float height, width;
 
-    public Map() {
+    public Maps() {
         mp = new ArrayList<Element>();
         world = new Matrix(50, 50);
         height= 10;
