@@ -23,7 +23,8 @@ public class Entity {
     private PolygonShape pS;
     public Body body;
     public float dx, dy;
-    public float speedMult=0.035f;;
+    public float speedMult=0.035f;
+    
 
     public Entity(float w, float h, float x, float y) {
         pS = new PolygonShape();
@@ -35,7 +36,7 @@ public class Entity {
 
         FixtureDef fd = new FixtureDef();
         fd.shape = pS;
-        fd.friction = 0;
+        fd.friction = 20;
 
         body = Window.game2.world.createBody(bd);
         body.createFixture(fd);
