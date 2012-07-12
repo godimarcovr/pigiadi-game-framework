@@ -57,7 +57,7 @@ public class Element {
     
     public void draw() {
 
-        Color.white.bind();
+         Color.white.bind();
         GL11.glPushMatrix();
         GL11.glTranslatef(this.body.getPosition().x, this.body.getPosition().y, 0);
         GL11.glBegin(GL11.GL_QUADS);
