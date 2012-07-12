@@ -26,7 +26,6 @@ public class Game {
     public World world;
     int velIt = 6, posIt = 2;
     Entity pl, e2;
-    LinkedList<Entity> eList;
 
     public Game() {
     }
@@ -48,11 +47,9 @@ public class Game {
         lastFPS = getTime(); // call before loop to initialise fps timer
 
         /***********************************************************************************************************/
-        eList = new LinkedList<Entity>();
         this.world = new World(new Vec2(0f, 0f), false);
         this.pl = new Entity(5, 5, -20f, 20f);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
-        eList.add(e2);
         map = new Map();
 
         /***********************************************************************************************************/
@@ -109,7 +106,7 @@ public class Game {
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        for (Entity entity : eList) {
+        for (Entity entity : EntityCensus.ents) {
             entity.draw();
         }
         pl.draw();
