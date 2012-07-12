@@ -19,12 +19,13 @@ import org.lwjgl.util.glu.GLU;
  */
 public class Game {
 
+    Map map;
     long lastFrame;
     int fps;
     long lastFPS;
     public World world;
     int velIt = 6, posIt = 2;
-    Entity e, e2;
+    Entity pl, e2;
     LinkedList<Entity> eList;
 
     public Game() {
@@ -35,6 +36,7 @@ public class Game {
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
         Window.game2 = this;
+        
         try {
             Display.create();
         } catch (LWJGLException ex) {
@@ -48,11 +50,10 @@ public class Game {
         /***********************************************************************************************************/
         eList = new LinkedList<Entity>();
         this.world = new World(new Vec2(0f, 0f), false);
-        this.e = new Entity(5, 5, -20f, 20f);
+        this.pl = new Entity(5, 5, -20f, 20f);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
-        eList.add(e);
         eList.add(e2);
-
+        map = new Map();
 
         /***********************************************************************************************************/
         while (!Display.isCloseRequested()) {
@@ -111,30 +112,32 @@ public class Game {
         for (Entity entity : eList) {
             entity.draw();
         }
+        pl.draw();
+        map.draw();
     }
 
     public void update(int delta) {
         String read = Kb.getChars();
 
         if (Kb.isPressed("S")) {
-            e.dy = -1;
+            pl.dy = -1;
         } else if (!Kb.isPressed("W")) {
-            e.dy = 0;
+            pl.dy = 0;
         }
         if (Kb.isPressed("D")) {
-            e.dx = 1;
+            pl.dx = 1;
         } else if (!Kb.isPressed("A")) {
-            e.dx = 0;
+            pl.dx = 0;
         }
         if (Kb.isPressed("A")) {
-            e.dx = -1;
+            pl.dx = -1;
         } else if (!Kb.isPressed("D")) {
-            e.dx = 0;
+            pl.dx = 0;
         }
         if (Kb.isPressed("W")) {
-            e.dy = 1;
+            pl.dy = 1;
         } else if (!Kb.isPressed("S")) {
-            e.dy = 0;
+            pl.dy = 0;
         }
 
         if (Kb.isPressed("K")) {
@@ -158,7 +161,7 @@ public class Game {
             e2.dy = 0;
         }
 
-        e.setSpeed();
+        pl.setSpeed();
         e2.setSpeed();
         world.step(delta, velIt, posIt);
     }
