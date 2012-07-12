@@ -14,12 +14,12 @@ import org.newdawn.slick.Color;
  */
 public class Map {
 
-    ArrayList<Element> map;
+    ArrayList<Element> mp;
     Matrix world;
     float height, width;
 
     public Map() {
-        map = new ArrayList<Element>();
+        mp = new ArrayList<Element>();
         world = new Matrix(50, 50);
         height= 10;
         width = 10;
@@ -27,7 +27,7 @@ public class Map {
     }
 
     public void draw() {
-        for (Element element : map) {
+        for (Element element : mp) {
             element.draw();
         }
         for (Object object : world.getNeighboursOf(20, 20, 7)) {
