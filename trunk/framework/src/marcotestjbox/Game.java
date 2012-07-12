@@ -9,6 +9,7 @@
 	import framework.Ms;
 	import framework.TimerHandler;
 	import framework.Window;
+import java.util.LinkedList;
 	import org.jbox2d.common.Vec2;
 	import org.jbox2d.dynamics.World;
 	import org.lwjgl.LWJGLException;
@@ -29,6 +30,7 @@
  World world;
  int velIt=6, posIt=2;
  Entity e, e2;
+ LinkedList<Entity> eList;
 	
  public Game() {
  }
@@ -43,16 +45,21 @@
      } catch (LWJGLException ex) {
          ex.printStackTrace();
      }
-     menuInitialize();//Menu initialize
+     //menuInitialize();//Menu initialize
      initGL(); // init OpenGL
      getDelta(); // call once before loop to initialise lastFrame
      lastFPS = getTime(); // call before loop to initialise fps timer
 	
 	/***********************************************************************************************************/
-	
+
+     eList = new LinkedList<Entity>();
      this.world=new World(new Vec2(0f,0f), true);
-     this.e=new Entity(-20f,20f,false);
-     this.e2=new Entity(0f,0f,false);
+     this.e=new Entity(5,5,-20f,20f);
+     this.e2=new Entity(new Vec2[]{new Vec2(-5,0),new Vec2(0,-5),new Vec2(5,0),new Vec2(0,5)},0f,0f);
+     eList.add(e);
+     eList.add(e2);
+     eList.add(new Entity(3, 20, 20));
+     
 	
 	/***********************************************************************************************************/
 	
@@ -109,8 +116,9 @@
 	
  public void renderGL() {
      GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-     e.draw();
- e2.draw();
+     for (Entity entity : eList) {
+         entity.draw();
+     }
  }
 	
  public void update(int delta) {
@@ -158,13 +166,15 @@
          e2.dy = 0;
      }
      
-     
-     e.move(delta);
-     e2.move(delta);
+     move(delta);
      world.step(delta, velIt, posIt);
+     
      
  }
 	
- public void menuInitialize(){
+ public void move(int delta){
+     for (Entity entity : eList) {
+         entity.move(delta);
+     }
  }
 	}
