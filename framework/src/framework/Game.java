@@ -19,7 +19,7 @@ import org.lwjgl.util.glu.GLU;
  */
 public class Game {
 
-    Maps map;
+    Map map;
     long lastFrame;
     int fps;
     long lastFPS;
@@ -53,7 +53,7 @@ public class Game {
         this.pl = new Entity(5, 5, -20f, 20f);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
         eList.add(e2);
-        map = new Maps();
+        map = new Map();
 
         /***********************************************************************************************************/
         while (!Display.isCloseRequested()) {
