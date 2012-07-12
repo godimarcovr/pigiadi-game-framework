@@ -53,9 +53,16 @@ public class Entity {
         GL11.glTranslatef(0, 0, 0);
         GL11.glBegin(GL11.GL_LINE_LOOP);
         {
-            for (Vec2 object : s.getVertices()) {
+            Vec2[] arr=s.getVertices();
+            for (int i = 0; i < arr.length-1; i++) {
+                Vec2 object = arr[i];
+                //vertices da correggere
+                System.out.println(i);
                 GL11.glVertex2f(object.x, object.y);
-              }
+            }
+            /*for (Vec2 object : s.getVertices()) {
+                GL11.glVertex2f(object.x, object.y);
+              }*/
             GL11.glEnd();
             GL11.glPopMatrix();
         }
