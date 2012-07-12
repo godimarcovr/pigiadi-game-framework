@@ -7,6 +7,7 @@ package framework;
 import java.math.MathContext;
 import java.util.ArrayList;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.TextureImpl;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Map {
     }
 
     public void draw() {
+        Color.red.bind();
         for (Element element : mp) {
             element.draw();
         }
@@ -34,7 +36,7 @@ public class Map {
 
             ((GraphicElement) object).draw();
         }
-
+        TextureImpl.bindNone();
     }
 
     public void generate() {
