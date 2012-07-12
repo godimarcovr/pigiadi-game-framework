@@ -40,6 +40,9 @@ public class Entity {
 
         body = Window.game2.world.createBody(bd);
         body.createFixture(fd);
+
+
+        EntityCensus.addEntity(this);
     }
 
     public Entity(Vec2[] vertex, float x, float y) {
@@ -55,7 +58,10 @@ public class Entity {
         fd.friction = 0;
 
         body = Window.game2.world.createBody(bd);
-        body.createFixture(fd);
+        body.createFixture(fd);  
+
+
+        EntityCensus.addEntity(this);
     }
 
     public void setSpeed() {
