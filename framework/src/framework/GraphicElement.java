@@ -27,7 +27,7 @@ public class GraphicElement {
         
     }
      
-     public void Draw(){
+     public void draw(){
         Color.white.bind();
         GL11.glPushMatrix();
         GL11.glTranslatef(p.x, p.y, 0);
