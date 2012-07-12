@@ -4,7 +4,7 @@
  */
 package framework;
 
-import marcotestjbox.Game;
+import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -31,5 +31,9 @@ public class Window {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public static World getWorld(){
+        return Window.game2.world;
     }
 }
