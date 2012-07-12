@@ -7,7 +7,6 @@ package framework;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import marcotestjbox.Game;
 
 /**
  *
@@ -17,7 +16,6 @@ public class Window {
 
     public static int w, h;
     public static Tester game;
-    public static Game game2;
 
     public static boolean initialise(int width, int heigth) {
         try {

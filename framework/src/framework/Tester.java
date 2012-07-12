@@ -24,7 +24,6 @@ import org.jbox2d.collision.shapes.PolygonShape;
  */
 public class Tester {
 
-  
     long lastFrame;
     int fps;
     long lastFPS;
@@ -33,15 +32,14 @@ public class Tester {
     TextBox textTest;
     Menu menuTest;
     boolean start;
-    Entity e, e2, e3;
-    LinkedList<Entity> eList;
+
 
     public Tester() {
     }
 
     public void start() {
-        
-        
+
+
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
         try {
@@ -49,20 +47,6 @@ public class Tester {
         } catch (LWJGLException ex) {
             ex.printStackTrace();
         }
-        eList = new LinkedList<Entity>();
-        e = new Entity(new Position(20, 20));
-        e2 = new Entity(new Position(200,200),new Vector[]{new Vector(200,300), new Vector(300, 200), new Vector(300, 300), new Vector(200, 300)});
-        e3 = new Entity(new Position(200,200),new Vector[]{new Vector(200,100), new Vector(300, 180), new Vector(300, 100), new Vector(200, 0)});
-        e.dx = 0;
-        e.dy = 0;
-        e2.dx= -50;
-        e2.dy = -50;
-        e3.dx = -50;
-        e3.dy = -50;
-        
-        eList.add(e);
-        eList.add(e2);
-        eList.add(e3);
 
         menuInitialize();//Menu initialize
         initGL(); // init OpenGL
@@ -121,114 +105,57 @@ public class Tester {
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        if (!start){
-        this.menuTest.draw();
-        }else{
-            e.draw();
-            e2.draw();
-            e3.draw();
+        if (!start) {
+            this.menuTest.draw();
+        } else {
         }
     }
 
     public void update(int delta) {
         String read = Kb.getChars();
-        if(start){
-                                 LinkedList<Entity> eLnew = new LinkedList<Entity>();               
-                
-                for (Entity ent : eList) {
+        boolean collide = false;
+        if (start) {
+             /*
+             * if (Kb.isPressed("S")){ e.dy = 100; if (e2.collidesNext(e,
+             * delta)){ e.dy = 0; } }else { e.dy = 0; } * if
+             * (Kb.isPressed("A")){ e.dx = -200; if (e2.collidesNext(e, delta)){
+             * e.dx = 0; } }else { e.dx = 0; }
+             */
 
-                    for (Entity entity : eList) {
-                        if (entity != ent){
-                            eLnew.add(e);
-                        }
-                    }
-                    for (Entity ent1 : eLnew) {
-                        if (ent!=ent1){
-                        if (ent1.collidesNext(ent, delta)){
-                            ent1.dx =0;
-                            ent1.dy = 0;
-                        }else{
-                            ent.move(delta);
-                        }
-                        }
-                    }
-                    eLnew.clear();
-                    
+        }
 
-       /*     if (Kb.isPressed("S")){
-                   e.dy = 100;  
-                    if (e2.collidesNext(e, delta)){
-                       e.dy = 0;
-                   }
-               }else {
-                   e.dy = 0;
-               }             */
-
-               if (Kb.isPressed("D")){
-                   e.dx = 200;
-                 if (e.collidesNext(e2, delta)){
-                       e.dx = 0;
-                   }
-               }else {
-                   e.dx = 0;
-               }
-                if (Kb.isPressed("S")){
-                   e.dy = 200;
-                 if (e2.collidesNext(e, delta)){
-                       e.dy = 0;
-                   }
-               }else {
-                   e.dy = 0;
-               }
-
-            }
-               
-  
-
-/*
-               if (Kb.isPressed("A")){
-                   e.dx = -200;
-                 if (e2.collidesNext(e, delta)){
-                       e.dx = 0;
-                   }
-               }else {
-                   e.dx = 0;
-               }*/
- 
-
-
-               e.move(delta);
-              }
-        
         menuTest.update(read);
 
     }
-    
-    public void menuInitialize(){
-       
+
+ 
+    public void menuInitialize() {
+
         int f1 = FontHandler.createFont("Times New Roman", Font.PLAIN, 15);
         this.textTest = new TextBox(new Box(200, 100, 500, 100), "", f1, Color.red, Color.cyan, Color.lightGray);
-        this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+        this.butTest = new Button(new Box(300, 400, 0, 200), "Ok", f1, Color.red, Color.cyan, Color.lightGray, Color.green, Color.gray) {
+
             @Override
-             public void run(){
+            public void run() {
                 start = true;
-             }
-         };
-        this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green,Color.gray){
+            }
+        };
+        this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green, Color.gray) {
+
             @Override
-             public void run(){
+            public void run() {
                 System.exit(0);
-             }
-         };
- 
+            }
+        };
+
         this.textTest.visible = true;
         this.butTest.visible = true;
         this.butTest2.visible = true;
 
-        this.menuTest=new Menu(new Box(50,50,450,450));
+        this.menuTest = new Menu(new Box(50, 50, 450, 450));
         this.menuTest.addComp(butTest);
         this.menuTest.addComp(textTest);
         this.menuTest.addComp(butTest2);
-        this.menuTest.verticalCompile(0.5f,0.5f);
+        this.menuTest.verticalCompile(0.5f, 0.5f);
     }
 }
