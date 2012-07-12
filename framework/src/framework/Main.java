@@ -4,8 +4,6 @@
  */
 package framework;
 
-import marcotestjbox.Game;
-
 /**
  *
  * @author Marco
