@@ -27,9 +27,9 @@ public class Entity {
     public Fixture fix;
     public float dx, dy;
 
-    public Entity(float dx, float dy) {
-        /*this.s = new PolygonShape();
-        this.s.setAsBox(5, 25f);
+    public Entity(float dx,float dy) {
+        this.s = new PolygonShape();
+        this.s.setAsBox(5, 2.5f);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type=BodyType.DYNAMIC;
@@ -40,29 +40,13 @@ public class Entity {
         fixdef.density=1.0f;
         fixdef.friction=0.3f;
 
-        this.fix=Window.game2.world.createBody(bodyDef).createFixture(fixdef);*/
-        FixtureDef fd = new FixtureDef();
-        PolygonShape sd = new PolygonShape();
-        sd.setAsBox(0.125f, 2f);
-        fd.shape = sd;
-        fd.density = 25.0f;
+        this.fix=Window.game2.world.createBody(bodyDef).createFixture(fixdef);
 
-        BodyDef bd = new BodyDef();
-        bd.type = BodyType.DYNAMIC;
-        float friction = .5f;
-        int numPerRow = 25;
-
-        fd.friction = friction;
-          bd.position = new Vec2(0,0);
-          bd.angle = 0f;
-          Body myBody = Window.game2.world.createBody(bd);
-          myBody.createFixture(fd);
-
-        this.dx = dx;
-        this.dy = dy;
+        this.dx=dx;
+        this.dy=dy;
     }
 
-    public void draw() {
+    public void draw(){
 
         Color.white.bind();
         GL11.glPushMatrix();
@@ -71,10 +55,12 @@ public class Entity {
         {
             for (Vec2 object : s.getVertices()) {
                 GL11.glVertex2f(object.x, object.y);
-            }
+              }
             GL11.glEnd();
             GL11.glPopMatrix();
         }
 
     }
+    
+
 }
