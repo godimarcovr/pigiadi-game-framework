@@ -106,11 +106,12 @@ public class Game {
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        map.draw();
         for (Entity entity : EntityCensus.ents) {
             entity.draw();
         }
         pl.draw();
-        map.draw();
+        
     }
 
     public void update(int delta) {
