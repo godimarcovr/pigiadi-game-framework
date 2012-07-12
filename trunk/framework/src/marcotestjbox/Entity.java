@@ -1,9 +1,14 @@
+
+
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package marcotestjbox;
 
+package marcotestjbox;
+	import marcotestjbox.Game;
 import framework.Window;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
@@ -15,6 +20,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.Color;
 
 /**
@@ -25,11 +31,14 @@ public class Entity {
 
     public PolygonShape s;
     public Fixture fix;
+    public Body myBody;
     public float dx, dy;
+    boolean debug;
 
-    public Entity(float dx,float dy) {
+    public Entity(float x, float y, boolean debug) {
+        /*
         this.s = new PolygonShape();
-        this.s.setAsBox(5, 2.5f);
+        this.s.setAsBox(4, 20f);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type=BodyType.DYNAMIC;
@@ -40,34 +49,73 @@ public class Entity {
         fixdef.density=1.0f;
         fixdef.friction=0.3f;
 
-        this.fix=Window.game2.world.createBody(bodyDef).createFixture(fixdef);
+        this.fix=Window.game2.world.createBody(bodyDef).createFixture(fixdef);*/
+        this.debug = debug;
+        if (debug){
+        FixtureDef fd = new FixtureDef();
+        PolygonShape sd = new PolygonShape();
+        sd.setAsBox(5f, 5f);
+        fd.shape = sd;
+        fd.density = 0;
 
-        this.dx=dx;
-        this.dy=dy;
-    }
+        BodyDef bd = new BodyDef();
+        bd.type = BodyType.STATIC;
+        float friction = 0f;
 
-    public void draw(){
-
-        Color.white.bind();
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0, 0, 0);
-        GL11.glBegin(GL11.GL_LINE_LOOP);
-        {
-            Vec2[] arr=s.getVertices();
-            for (int i = 0; i < arr.length-1; i++) {
-                Vec2 object = arr[i];
-                //vertices da correggere
-                System.out.println(i);
-                GL11.glVertex2f(object.x, object.y);
-            }
-            /*for (Vec2 object : s.getVertices()) {
-                GL11.glVertex2f(object.x, object.y);
-              }*/
-            GL11.glEnd();
-            GL11.glPopMatrix();
+        fd.friction = friction;
+        bd.position = new Vec2(x,y);
+        bd.angle = 0f;
+        myBody = Window.game2.world.createBody(bd);
+        myBody.createFixture(fd);
         }
+        
+        
+        else{
+        FixtureDef fd = new FixtureDef();
+        PolygonShape sd = new PolygonShape();
+        sd.setAsBox(5f, 5f);
+        fd.shape = sd;
+        fd.density = 0;
 
+        BodyDef bd = new BodyDef();
+        bd.type = BodyType.DYNAMIC;
+        float friction = 0f;
+
+        fd.friction = friction;
+        bd.position = new Vec2(x,y);
+        bd.angle = 0f;
+        myBody = Window.game2.world.createBody(bd);
+        myBody.createFixture(fd);
+        }
+          this.s = (PolygonShape)myBody.getFixtureList().getShape();
     }
     
+    public void move(int delta){
+        float x =(delta * dx) / 1000;
+        float y = (delta * dy) / 1000;
+        myBody.setLinearVelocity(new Vec2(x, y));
+    }
 
+    public void draw() {
+
+        if (debug){
+            Color.red.bind();
+        }else{
+        Color.white.bind();
+        }
+        GL11.glPushMatrix();
+        GL11.glTranslatef(myBody.getPosition().x, myBody.getPosition().y, 0);
+        GL11.glBegin(GL11.GL_LINE_LOOP);
+        {
+            for (int j = 0; j < s.getVertexCount(); j++) {
+                //System.out.print(s.getVertex(j).x+"\n");
+                 GL11.glVertex2f(s.getVertex(j).x,s.getVertex(j).y);
+            }
+
+            }
+            GL11.glEnd();
+            GL11.glPopMatrix();
+        
+
+    }
 }
