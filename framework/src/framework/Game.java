@@ -117,10 +117,6 @@ public class Game {
         float mult = 1f;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        System.out.println(pl.body.getPosition().x+ Window.bounds[0]);
-        System.out.println(pl.body.getPosition().x);
-        System.out.println(Window.bounds[0]);
-        System.out.println();
         GLU.gluOrtho2D(pl.body.getPosition().x+ Window.bounds[0]
                        , pl.body.getPosition().x+ Window.bounds[1]
                        , pl.body.getPosition().y+ Window.bounds[2]
