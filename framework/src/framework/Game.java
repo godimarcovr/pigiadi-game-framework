@@ -148,32 +148,9 @@ public class Game {
         } else if (!Kb.isPressed("S")) {
             pl.dy = 0;
         }
-
-        if (Kb.isPressed("K")) {
-            e2.dy = -1;
-        } else if (!Kb.isPressed("I")) {
-            e2.dy = 0;
-        }
-        if (Kb.isPressed("L")) {
-            e2.dx = 1;
-        } else if (!Kb.isPressed("J")) {
-            e2.dx = 0;
-        }
-        if (Kb.isPressed("J")) {
-            e2.dx = -1;
-        } else if (!Kb.isPressed("L")) {
-            e2.dx = 0;
-        }
-        if (Kb.isPressed("I")) {
-            e2.dy = 1;
-        } else if (!Kb.isPressed("K")) {
-            e2.dy = 0;
-        }
-
           
         pl.setSpeed();
         pl.setMatrixCoordinates(map.getEntityCoordinates(pl));
-        e2.setSpeed();
         world.step(delta, velIt, posIt);
     }
 }
