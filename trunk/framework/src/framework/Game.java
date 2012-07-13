@@ -25,7 +25,8 @@ public class Game {
     long lastFPS;
     public World world;
     int velIt = 6, posIt = 2;
-    Entity pl, e2;
+    Entity e2;
+    Player pl;
 
     public Game() {
     }
@@ -48,8 +49,9 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Entity(5, 5, -20f, 20f);
+        this.pl = new Player(5, 5, -20f, 20f);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
+        pl.debug = true;
         map = new Map();
 
         /***********************************************************************************************************/
@@ -75,6 +77,7 @@ public class Game {
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
         float lowerX = -25.0f, upperX = 25.f, lowerY = -25.0f, upperY = 25.0f;
+        //float lowerX = 0f, upperX = 0f, lowerY = 0f, upperY = 0f;
         GLU.gluOrtho2D(lowerX, upperX, lowerY, upperY);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         //GL11.glEnable(GL11.GL_BLEND);

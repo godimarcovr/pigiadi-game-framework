@@ -12,6 +12,7 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.Color;
 
 /**
@@ -20,13 +21,16 @@ import org.newdawn.slick.Color;
  */
 public class Entity {
 
+    public boolean debug;
     private PolygonShape pS;
     public Body body;
     public float dx, dy;
     public float speedMult=0.035f;
-    
+    public float w,h;
 
     public Entity(float w, float h, float x, float y) {
+        this.w= w;
+        this.h=h;
         pS = new PolygonShape();
         pS.setAsBox(w, h);
 
@@ -86,6 +90,6 @@ public class Entity {
         GL11.glEnd();
         GL11.glPopMatrix();
 
-
+        
     }
 }
