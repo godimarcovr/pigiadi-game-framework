@@ -22,7 +22,7 @@ import org.newdawn.slick.Color;
 public class Entity {
 
     public boolean debug;
-    private PolygonShape pS;
+    public PolygonShape pS;
     public Body body;
     public float dx, dy;
     public float speedMult=0.035f;

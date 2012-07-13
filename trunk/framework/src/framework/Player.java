@@ -21,45 +21,14 @@ import org.newdawn.slick.Color;
  */
 public class Player extends Entity{
 
-    private PolygonShape pS;
     public int c,r;
 
     public Player(float w, float h, float x, float y) {
         super(w, h, x, y);
-        this.w= w;
-        this.h=h;
-        
-        pS = new PolygonShape();
-        pS.setAsBox(w, h);
-
-        BodyDef bd = new BodyDef();
-        bd.type = BodyType.DYNAMIC;
-        bd.position = new Vec2(x, y);
-
-        FixtureDef fd = new FixtureDef();
-        fd.shape = pS;
-        fd.friction = 20;
-
-        body = Window.game2.world.createBody(bd);
-        body.createFixture(fd);
     }
 
     public Player(Vec2[] vertex, float x, float y) {
         super(vertex, x, y);
-        pS = new PolygonShape();
-        pS.set(vertex, vertex.length);
-
-        BodyDef bd = new BodyDef();
-        bd.type = BodyType.DYNAMIC;
-        bd.position = new Vec2(x, y);
-
-        FixtureDef fd = new FixtureDef();
-        fd.shape = pS;
-        fd.friction = 0;
-
-        body = Window.game2.world.createBody(bd);
-        body.createFixture(fd);  
-
     }
 
 

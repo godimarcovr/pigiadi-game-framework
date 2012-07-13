@@ -162,8 +162,9 @@ public class Game {
             e2.dy = 0;
         }
 
+          
         pl.setSpeed();
-      
+        pl.setMatrixCoordinates(map.getEntityCoordinates(pl));
         e2.setSpeed();
         world.step(delta, velIt, posIt);
     }

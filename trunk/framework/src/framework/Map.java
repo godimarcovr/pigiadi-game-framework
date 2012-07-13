@@ -22,7 +22,7 @@ public class Map {
 
     public Map() {
         mp = new ArrayList<Element>();
-        world = new Matrix(80, 80);
+        world = new Matrix(800, 800);
         height = 10;
         width = 10;
         generate();
@@ -63,7 +63,7 @@ public class Map {
 
             y = -height/2 * world.getRows() / 2;
         }
-       // generateObstacles(20);
+       generateObstacles(20);
     }
 
     public void generateObstacles(int nObstacles) {
@@ -89,8 +89,7 @@ public class Map {
         //world.insertObject(new Element(0, 0, 10, 10), 0, 0);
 
         public Position getEntityCoordinates(Entity e){
-            System.out.print(Math.floor(e.body.getPosition().x)+"\n");
-            return new Position(0,0);
+            return new Position( (float) (Math.floor((e.body.getPosition().x) / width*2) + (world.getColumns() / 2)), (float) (Math.floor(world.getRows() - (e.body.getPosition().y) / height*2) - (world.getRows() / 2)) + 1);
         }
         
     
