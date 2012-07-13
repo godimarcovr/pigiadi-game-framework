@@ -32,7 +32,7 @@ public class Element {
 
         FixtureDef fd = new FixtureDef();
         fd.shape = pS;
-        fd.friction = 20;
+        fd.friction = 0f;
 
         body = Window.game2.world.createBody(bd);
         body.createFixture(fd);
