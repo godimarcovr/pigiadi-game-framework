@@ -35,6 +35,7 @@ public class Game {
 
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
+        Window.setMeterSpace(4*15, 3*15);
         Window.game2 = this;
         
         try {
@@ -76,9 +77,8 @@ public class Game {
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        float lowerX = -25.0f, upperX = 25.f, lowerY = -25.0f, upperY = 25.0f;
-        //float lowerX = 0f, upperX = 0f, lowerY = 0f, upperY = 0f;
-        GLU.gluOrtho2D(lowerX, upperX, lowerY, upperY);
+        Float[] bounds=Window.getBoundaries();
+        GLU.gluOrtho2D(bounds[0], bounds[1], bounds[2], bounds[3]);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         //GL11.glEnable(GL11.GL_BLEND);
         //GL11.glEnable(GL11.GL_TEXTURE_2D);
