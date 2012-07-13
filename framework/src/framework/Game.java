@@ -34,7 +34,7 @@ public class Game {
     public void start() {
 
         // init OpenGL here
-        boolean success = Window.initialise(800, 600);
+        boolean success = Window.initialise(1280, 1024);
         Window.game2 = this;
         
         try {

@@ -88,7 +88,7 @@ public class Player {
         float mult = 0.05f;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GLU.gluOrtho2D((body.getPosition().x + w) - Window.w*mult,  Window.w*mult + (body.getPosition().x  + w), (body.getPosition().y + h) -  Window.h*mult, (body.getPosition().y + h) +  Window.h*mult);
+        GLU.gluOrtho2D((body.getPosition().x + w) - 800*mult,  800*mult + (body.getPosition().x  + w), (body.getPosition().y + h) -  600*mult, (body.getPosition().y + h) +  600*mult);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         
     }
