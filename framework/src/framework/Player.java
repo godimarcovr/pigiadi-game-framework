@@ -49,7 +49,7 @@ public class Player extends Entity{
         float mult = 0.35f;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GLU.gluOrtho2D((body.getPosition().x + w) - 800*mult,  800*mult + (body.getPosition().x  + w), (body.getPosition().y + h) -  600*mult, (body.getPosition().y + h) +  600*mult);
+        GLU.gluOrtho2D((body.getPosition().x + w) - 50*mult,  50*mult + (body.getPosition().x  + w), (body.getPosition().y + h) -  50*mult, (body.getPosition().y + h) +  50*mult);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         
     }
