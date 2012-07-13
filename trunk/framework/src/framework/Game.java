@@ -35,7 +35,7 @@ public class Game {
 
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
-        Window.setMeterSpace(4*40, 3*40);
+        Window.setMeterSpace(4*5, 3*5);
         Window.game2 = this;
         
         try {
@@ -50,8 +50,8 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Player(4.5f, 4.5f, 0, 0);
-        this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 20f, 20f);
+        this.pl = new Player(0.5f, 0.5f, 0, 0);
+        this.e2 = new Entity(new Vec2[]{new Vec2(-1, 0), new Vec2(0, -1), new Vec2(1, 0), new Vec2(0, 1)}, 20f, 20f);
         pl.debug = true;
         map = new Map();
 

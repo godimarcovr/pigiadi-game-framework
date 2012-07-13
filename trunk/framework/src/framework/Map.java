@@ -23,8 +23,8 @@ public class Map {
     public Map() {
         mp = new ArrayList<Element>();
         world = new Matrix(100, 100);
-        height = 10;
-        width = 10;
+        height = 1;
+        width = 1;
         generate();
     }
 
