@@ -50,7 +50,7 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Player(5, 5, -0, 0f);
+        this.pl = new Player(5, 5, 0, 0);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 20f, 20f);
         pl.debug = true;
         map = new Map();
@@ -114,10 +114,17 @@ public class Game {
             entity.draw();
         }
         pl.draw();
-        float mult = 0.05f;
+        float mult = 1f;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GLU.gluOrtho2D((pl.body.getPosition().x + pl.w) - 800*mult,  800*mult + (pl.body.getPosition().x  + pl.w), (pl.body.getPosition().y + pl.h) -  600*mult, (pl.body.getPosition().y + pl.h) +  600*mult);
+        System.out.println(pl.body.getPosition().x+ Window.bounds[0]);
+        System.out.println(pl.body.getPosition().x);
+        System.out.println(Window.bounds[0]);
+        System.out.println();
+        GLU.gluOrtho2D(pl.body.getPosition().x+ Window.bounds[0]
+                       , pl.body.getPosition().x+ Window.bounds[1]
+                       , pl.body.getPosition().y+ Window.bounds[2]
+                       , pl.body.getPosition().y+ Window.bounds[3]);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         
     }
