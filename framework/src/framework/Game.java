@@ -114,6 +114,11 @@ public class Game {
             entity.draw();
         }
         pl.draw();
+        float mult = 0.05f;
+        GL11.glMatrixMode(GL11.GL_PROJECTION);
+        GL11.glLoadIdentity();
+        GLU.gluOrtho2D((pl.body.getPosition().x + pl.w) - 800*mult,  800*mult + (pl.body.getPosition().x  + pl.w), (pl.body.getPosition().y + pl.h) -  600*mult, (pl.body.getPosition().y + pl.h) +  600*mult);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
         
     }
 
