@@ -19,16 +19,13 @@ import org.newdawn.slick.Color;
  *
  * @author Marco
  */
-public class Player {
+public class Player extends Entity{
 
-    public boolean debug;
     private PolygonShape pS;
-    public Body body;
-    public float dx, dy;
-    public float speedMult=0.035f;
-    public float w,h;
+    public int c,r;
 
     public Player(float w, float h, float x, float y) {
+        super(w, h, x, y);
         this.w= w;
         this.h=h;
         
@@ -48,6 +45,7 @@ public class Player {
     }
 
     public Player(Vec2[] vertex, float x, float y) {
+        super(vertex, x, y);
         pS = new PolygonShape();
         pS.set(vertex, vertex.length);
 
@@ -64,14 +62,8 @@ public class Player {
 
     }
 
-    public void setSpeed() {
-        this.body.setLinearVelocity(new Vec2(dx*this.speedMult,dy*this.speedMult));
-    }
 
-    public void setSpeedMult(float speedMult) {
-        this.speedMult = speedMult;
-    }
-
+    @Override
     public void draw() {
 
         Color.white.bind();
@@ -85,11 +77,16 @@ public class Player {
         }
         GL11.glEnd();
         GL11.glPopMatrix();
-        float mult = 0.05f;
+        float mult = 0.35f;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
         GLU.gluOrtho2D((body.getPosition().x + w) - 800*mult,  800*mult + (body.getPosition().x  + w), (body.getPosition().y + h) -  600*mult, (body.getPosition().y + h) +  600*mult);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         
+    }
+    
+    public void setMatrixCoordinates(Position p){
+        this.c = (int)p.x;
+        this.r = (int)p.y;
     }
 }

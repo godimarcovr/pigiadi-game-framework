@@ -34,7 +34,7 @@ public class Game {
     public void start() {
 
         // init OpenGL here
-        boolean success = Window.initialise(1280, 1024);
+        boolean success = Window.initialise(800, 600);
         Window.game2 = this;
         
         try {
@@ -49,8 +49,8 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Player(5, 5, -20f, 20f);
-        this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
+        this.pl = new Player(5, 5, -0, 0f);
+        this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 20f, 20f);
         pl.debug = true;
         map = new Map();
 
@@ -163,6 +163,7 @@ public class Game {
         }
 
         pl.setSpeed();
+      
         e2.setSpeed();
         world.step(delta, velIt, posIt);
     }
