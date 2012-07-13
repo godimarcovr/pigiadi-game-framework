@@ -64,7 +64,7 @@ public class Map {
         }
         Random r = new Random();
        
-       generateObstacles(r.nextInt(100));
+       generateObstacles(r.nextInt(100)+10);
     }
 
     public void generateObstacles(int nObstacles) {
@@ -80,7 +80,7 @@ public class Map {
             float newY = ((GraphicElement) world.getElementAt(x, y)).p.y-height/2;
             mp.add(new Element(width/2 - 1, width/2 - 1,newX, newY));
             while (l<maxLength){
-                mp.add( new Element(height/2- 1, height/2 - 1,newX+l*width, newY));
+                mp.add( new Element(height/2, height/2,newX+l*width, newY));
                 l++;
             }
             l = 0;
