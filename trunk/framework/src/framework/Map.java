@@ -49,21 +49,20 @@ public class Map {
 
     public void generate() {
         int w = world.getColumns();
-        float x = -width/2* world.getColumns()/2 ;
-        float y = -height/2* world.getRows()/2 ;
-        System.out.print(x);
+        float x = -width* world.getColumns()/2 ;
+        float y = -height* world.getRows()/2 ;
         int h = world.getRows();
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                world.insertObject(new GraphicElement(width*2, height*2, x, y), i, j);
-                y += height/2;
+                world.insertObject(new GraphicElement(width, height,x,y), i, j);
+                y += height;
 
             }
-            x += width/2;
+            x += width;
 
-            y = -height/2 * world.getRows() / 2;
+            y = -height* world.getRows() / 2;
         }
-       generateObstacles(20);
+       generateObstacles(50);
     }
 
     public void generateObstacles(int nObstacles) {
@@ -71,11 +70,12 @@ public class Map {
         int n = 0;
         int l =0;
         int maxLength = 5;
+        
         while (n < nObstacles) {
             int x = r.nextInt(world.getColumns());
             int y = r.nextInt(world.getRows());
-            float newX = ((GraphicElement) world.getElementAt(x, y)).p.x-width/2;
-            float newY = ((GraphicElement) world.getElementAt(x, y)).p.y-height/2;
+            float newX = ((GraphicElement) world.getElementAt(x, y)).p.x;
+            float newY = ((GraphicElement) world.getElementAt(x, y)).p.y;
             mp.add(new Element(width/2 - 1, height/2 - 1,newX, newY));
             while (l<maxLength){
                 mp.add( new Element(width/2 - 1, height/2 - 1,newX+l*width/2, newY));
@@ -89,7 +89,7 @@ public class Map {
         //world.insertObject(new Element(0, 0, 10, 10), 0, 0);
 
         public Position getEntityCoordinates(Entity e){
-            return new Position( (float) (Math.floor((e.body.getPosition().x) / width*2) + (world.getColumns() / 2)), (float) (Math.floor(world.getRows() - (e.body.getPosition().y) / height*2) - (world.getRows() / 2)) + 1);
+            return new Position( (float) (Math.floor((e.body.getPosition().x) / width) + (world.getColumns() / 2)), (float) (Math.floor(world.getRows() - (e.body.getPosition().y) / height) - (world.getRows() / 2)) + 1);
         }
         
     
