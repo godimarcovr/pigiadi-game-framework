@@ -25,7 +25,7 @@ public class Entity {
     public PolygonShape pS;
     public Body body;
     public float dx, dy;
-    public float speedMult=0.035f;
+    public float speedMult=0.009f;
     public float w,h;
 
     public Entity(float w, float h, float x, float y) {
