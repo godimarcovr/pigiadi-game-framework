@@ -35,7 +35,7 @@ public class Game {
 
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
-        Window.setMeterSpace(4*15, 3*15);
+        Window.setMeterSpace(4*40, 3*40);
         Window.game2 = this;
         
         try {
