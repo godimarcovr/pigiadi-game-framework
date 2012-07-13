@@ -50,7 +50,7 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Player(5, 5, 0, 0);
+        this.pl = new Player(4.5f, 4.5f, 0, 0);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 20f, 20f);
         pl.debug = true;
         map = new Map();
