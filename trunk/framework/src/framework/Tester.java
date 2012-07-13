@@ -137,7 +137,7 @@ public class Tester {
 
             @Override
             public void run() {
-                start = true;
+                
             }
         };
         this.butTest2 = new Button(new Box(300, 400, 0, 200), "Exit", f1, Color.red, Color.cyan, Color.lightGray, Color.green, Color.gray) {
