@@ -21,6 +21,7 @@ public class Window {
     public static Tester game;
     public static Game game2;
     public static Vec2 mSpace;
+    public static Float[] bounds=new Float[4];
 
 
     public static boolean initialise(int width, int heigth) {
@@ -41,14 +42,21 @@ public class Window {
 
     public static void setMeterSpace(Vec2 value){
         Window.mSpace=value;
+        bounds[0]=-Window.mSpace.x/2.0f;
+        bounds[1]=Window.mSpace.x/2.0f;
+        bounds[2]=-Window.mSpace.y/2.0f;
+        bounds[3]=Window.mSpace.y/2.0f;
     }
 
     public static void setMeterSpace(float x,float y){
         Window.mSpace=new Vec2(x,y);
+        bounds[0]=-Window.mSpace.x/2.0f;
+        bounds[1]=Window.mSpace.x/2.0f;
+        bounds[2]=-Window.mSpace.y/2.0f;
+        bounds[3]=Window.mSpace.y/2.0f;
     }
 
     public static Float[] getBoundaries(){
-        Float[] bounds=new Float[4];
         bounds[0]=-Window.mSpace.x/2.0f;
         bounds[1]=Window.mSpace.x/2.0f;
         bounds[2]=-Window.mSpace.y/2.0f;
