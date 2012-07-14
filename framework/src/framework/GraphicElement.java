@@ -27,7 +27,7 @@ public class GraphicElement {
         
     }
      
-     public void draw(){
+     public  void draw(){
         GL11.glPushMatrix();
         GL11.glTranslatef(p.x, p.y, 0);
         GL11.glBegin(GL11.GL_LINE_LOOP);

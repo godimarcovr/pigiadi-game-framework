@@ -22,20 +22,35 @@ public class Map {
 
     public Map() {
         mp = new ArrayList<Element>();
-        world = new Matrix(100, 100);
-        height = 1;
-        width = 1;
+        world = new Matrix(300, 300);
+        height = 10;
+        width = 10;
         generate();
     }
 
     public void draw() {
         Color.red.bind();
+        GraphicElement gl;
         for (Element element : mp) {
-            element.draw();
+          //  System.out.print(Math.abs(element.body.getPosition().x - Window.game2.pl.body.getPosition().x)+"\n");
+            if (Math.abs(element.body.getPosition().x - Window.game2.pl.body.getPosition().x)<=Window.getBoundaries()[1]*2){
+               if (Math.abs(element.body.getPosition().y - Window.game2.pl.body.getPosition().y)<=Window.getBoundaries()[3]*2){
+                element.draw();
+            }
+            }
         }
-       for (Object object : world.getNeighboursOf(Window.game2.pl.c, Window.game2.pl.r, 20)) {
+       
+        
+      for (Object object : world.getNeighboursOf(Window.game2.pl.c, Window.game2.pl.r, (int)(Window.getBoundaries()[3].intValue()+1/width))) {
+           
+           if (((Terrain) object).type ==0){
+            gl = new GraphicElement(width,height,((Terrain) object).x,((Terrain) object).y);
+            gl.draw();
+           }
+           else {
 
-            ((GraphicElement) object).draw();
+           }
+            
         }
         /*
              for (int i = 0; i < world.getColumns(); i++) {
@@ -54,7 +69,7 @@ public class Map {
         int h = world.getRows();
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                world.insertObject(new GraphicElement(width, height,x,y), i, j);
+                world.insertObject(new Terrain(0,x,y), i, j);
                 y += height;
 
             }
@@ -64,7 +79,7 @@ public class Map {
         }
         Random r = new Random();
        
-       generateObstacles(r.nextInt(100)+10);
+       generateObstacles(r.nextInt(1000)+10);
     }
 
     public void generateObstacles(int nObstacles) {
@@ -76,11 +91,12 @@ public class Map {
         while (n < nObstacles) {
             int x = r.nextInt(world.getColumns());
             int y = r.nextInt(world.getRows());
-            float newX = ((GraphicElement) world.getElementAt(x, y)).p.x-width/2;
-            float newY = ((GraphicElement) world.getElementAt(x, y)).p.y-height/2;
+            float newX = ((Terrain) world.getElementAt(x, y)).x-width/2;
+            float newY = ((Terrain) world.getElementAt(x, y)).y-height/2;
             mp.add(new Element(width/2 - 1, width/2 - 1,newX, newY));
             while (l<maxLength){
-                mp.add( new Element(height/2, height/2,newX+l*width, newY));
+                 mp.add( new Element(height/2, height/2,newX+l*width, newY));
+                 world.insertObject((new Terrain(1,newX,newY)),x,y);
                 l++;
             }
             l = 0;

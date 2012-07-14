@@ -19,7 +19,7 @@ import org.newdawn.slick.Color;
  */
 public class Element {
     
-    private PolygonShape pS;
+    public PolygonShape pS;
     public Body body;
     
    public Element(float w, float h, float x, float y) {
