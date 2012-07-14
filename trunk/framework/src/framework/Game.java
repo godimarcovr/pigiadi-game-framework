@@ -48,13 +48,15 @@ public class Game {
         lastFPS = getTime(); // call before loop to initialise fps timer
 
         /***********************************************************************************************************/
-        this.world = new World(new Vec2(0f, 0f), false);
+        this.world = new World(new Vec2(0, 0), false);
 
         this.pl = new Player(4.9f, 4.9f, 0, 0);
         this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
 
         pl.debug = true;
         map = new Map();
+
+        Controls.setKeys(new String[]{"W","S","A","D"});
 
         /***********************************************************************************************************/
         while (!Display.isCloseRequested()) {
@@ -129,27 +131,9 @@ public class Game {
     public void update(int delta) {
         String read = Kb.getChars();
 
-        if (Kb.isPressed("S")) {
-            pl.dy = -5;
-        } else if (!Kb.isPressed("W")) {
-            pl.dy = 0;
-        }
-        if (Kb.isPressed("D")) {
-            pl.dx = 5;
-        } else if (!Kb.isPressed("A")) {
-            pl.dx = 0;
-        }
-        if (Kb.isPressed("A")) {
-            pl.dx = -5;
-        } else if (!Kb.isPressed("D")) {
-            pl.dx = 0;
-        }
-        if (Kb.isPressed("W")) {
-            pl.dy = 5;
-        } else if (!Kb.isPressed("S")) {
-            pl.dy = 0;
-        }
-
+        Vec2 mov=Controls.getPlayerMovement();
+        pl.dx=mov.x;
+        pl.dy=mov.y;
           
         pl.setSpeed();
         pl.setMatrixCoordinates(map.getEntityCoordinates(pl));
