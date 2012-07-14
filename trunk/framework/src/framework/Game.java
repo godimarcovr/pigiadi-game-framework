@@ -18,7 +18,6 @@ import org.lwjgl.util.glu.GLU;
  * @author Marco
  */
 public class Game {
-
     Map map;
     long lastFrame;
     int fps;
@@ -35,7 +34,7 @@ public class Game {
 
         // init OpenGL here
         boolean success = Window.initialise(800, 600);
-        Window.setMeterSpace(4*5, 3*5);
+        Window.setMeterSpace(4*40, 3*40);
         Window.game2 = this;
         
         try {
@@ -50,8 +49,10 @@ public class Game {
 
         /***********************************************************************************************************/
         this.world = new World(new Vec2(0f, 0f), false);
-        this.pl = new Player(0.5f, 0.5f, 0, 0);
-        this.e2 = new Entity(new Vec2[]{new Vec2(-1, 0), new Vec2(0, -1), new Vec2(1, 0), new Vec2(0, 1)}, 20f, 20f);
+
+        this.pl = new Player(4.9f, 4.9f, 0, 0);
+        this.e2 = new Entity(new Vec2[]{new Vec2(-5, 0), new Vec2(0, -5), new Vec2(5, 0), new Vec2(0, 5)}, 0f, 0f);
+
         pl.debug = true;
         map = new Map();
 
@@ -114,7 +115,7 @@ public class Game {
             entity.draw();
         }
         pl.draw();
-        float mult = 1f;
+       
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
         GLU.gluOrtho2D(pl.body.getPosition().x+ Window.bounds[0]
@@ -129,25 +130,26 @@ public class Game {
         String read = Kb.getChars();
 
         if (Kb.isPressed("S")) {
-            pl.dy = -1;
+            pl.dy = -5;
         } else if (!Kb.isPressed("W")) {
             pl.dy = 0;
         }
         if (Kb.isPressed("D")) {
-            pl.dx = 1;
+            pl.dx = 5;
         } else if (!Kb.isPressed("A")) {
             pl.dx = 0;
         }
         if (Kb.isPressed("A")) {
-            pl.dx = -1;
+            pl.dx = -5;
         } else if (!Kb.isPressed("D")) {
             pl.dx = 0;
         }
         if (Kb.isPressed("W")) {
-            pl.dy = 1;
+            pl.dy = 5;
         } else if (!Kb.isPressed("S")) {
             pl.dy = 0;
         }
+
           
         pl.setSpeed();
         pl.setMatrixCoordinates(map.getEntityCoordinates(pl));
