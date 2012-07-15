@@ -10,6 +10,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
@@ -24,6 +25,7 @@ public class Entity {
     public boolean debug;
     public PolygonShape pS;
     public Body body;
+    public Fixture fix;
     public float dx, dy;
     public float speedMult=0.04f;
     public float w,h;
@@ -43,7 +45,7 @@ public class Entity {
         fd.friction = 1;
 
         body = Window.game2.world.createBody(bd);
-        body.createFixture(fd);
+        this.fix=body.createFixture(fd);
 
 
         EntityCensus.addEntity(this);
