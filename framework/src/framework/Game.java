@@ -134,6 +134,7 @@ public class Game {
         Vec2 mov=Controls.getPlayerMovement();
         pl.dx=mov.x;
         pl.dy=mov.y;
+        pl.update();
           
         pl.setSpeed();
         pl.setMatrixCoordinates(map.getEntityCoordinates(pl));
