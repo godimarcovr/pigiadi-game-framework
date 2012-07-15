@@ -111,4 +111,14 @@ public class Ms {
         lControl(delta);
         rControl(delta);
     }
+
+    public static float getAngle(){
+        float xMouse=Ms.getX()-(Window.w/2);
+        float yMouse=Ms.getY()-(Window.h/2);
+        if (xMouse >= 0) {
+            return((float) Math.toDegrees((float) Math.atan(yMouse / xMouse)));
+        } else {
+            return(180 - (float) Math.toDegrees(-(float) Math.atan(yMouse / xMouse)));
+        }
+    }
 }
