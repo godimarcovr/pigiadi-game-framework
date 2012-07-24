@@ -4,6 +4,8 @@
  */
 package framework;
 
+import gioco.Game;
+
 /**
  *
  * @author Marco

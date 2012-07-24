@@ -4,6 +4,7 @@
  */
 package framework;
 
+import gioco.Game;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
