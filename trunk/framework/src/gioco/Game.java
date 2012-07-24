@@ -2,8 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package framework;
+package gioco;
 
+import framework.Controls;
+import framework.Entity;
+import framework.EntityCensus;
+import framework.Kb;
+import framework.Map;
+import framework.Ms;
+import framework.Player;
+import framework.TimerHandler;
+import framework.Window;
 import java.util.LinkedList;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -18,14 +27,14 @@ import org.lwjgl.util.glu.GLU;
  * @author Marco
  */
 public class Game {
-    Map map;
-    long lastFrame;
-    int fps;
-    long lastFPS;
+    public Map map;
+    public long lastFrame;
+    public int fps;
+    public long lastFPS;
     public World world;
-    int velIt = 6, posIt = 2;
-    Entity e2;
-    Player pl;
+    public int velIt = 6, posIt = 2;
+    public Entity e2;
+    public Player pl;
 
     public Game() {
     }
