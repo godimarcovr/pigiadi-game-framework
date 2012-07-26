@@ -13,8 +13,10 @@ public class Terrain {
     float x,y;
     int c,r;
 
-    public Terrain(int type, float x, float y) {
+    public Terrain(int type, float x, float y, int c, int r) {
         this.type = type;
+        this.c =c;
+        this.r =r;
         this.x = x;
         this.y = y;
     }

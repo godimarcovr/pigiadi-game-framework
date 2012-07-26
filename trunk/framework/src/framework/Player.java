@@ -19,9 +19,7 @@ import org.newdawn.slick.Color;
  *
  * @author Marco
  */
-public class Player extends Entity{
-
-    public int c,r;
+public class Player extends Entity {
 
     public Player(float w, float h, float x, float y) {
         super(w, h, x, y);
@@ -31,33 +29,33 @@ public class Player extends Entity{
         super(vertex, x, y);
     }
 
-
     @Override
     public void draw() {
-
+        if (Window.game2.matrixMovement) {
+            this.setPosition(Window.game2.map.getMatrixPosition(this).getX(), Window.game2.map.getMatrixPosition(this).getY());
+            
+        }
+        Window.game2.setVisual();
         Color.white.bind();
         GL11.glPushMatrix();
         GL11.glTranslatef(this.body.getPosition().x, this.body.getPosition().y, 0);
-        GL11.glRotatef( 360-Ms.getAngle(), 0f, 0f, 1f);
+        GL11.glRotatef(360 - Ms.getAngle(), 0f, 0f, 1f);
         GL11.glBegin(GL11.GL_LINE_LOOP);
         {
             for (int j = 0; j < pS.getVertexCount(); j++) {
                 GL11.glVertex2f(pS.getVertex(j).x, pS.getVertex(j).y);
-                System.out.println(pS.getVertex(j).x+" // "+ pS.getVertex(j).y);
+                //    System.out.println(pS.getVertex(j).x+" // "+ pS.getVertex(j).y);
             }
-            System.out.println("");
+           
         }
         GL11.glEnd();
         GL11.glPopMatrix();
-        
-    }
-    
-    public void setMatrixCoordinates(Position p){
-        this.c = (int)p.x;
-        this.r = (int)p.y;
+
     }
 
-    public void update(){
+    public void update() {
         this.body.setTransform(this.body.getPosition(), Ms.getAngle());
     }
+    
+    
 }

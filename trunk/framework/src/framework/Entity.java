@@ -27,12 +27,15 @@ public class Entity {
     public Body body;
     public Fixture fix;
     public float dx, dy;
-    public float speedMult=0.04f;
-    public float w,h;
+    public float speedMult = 0.04f;
+    public float w, h;
+    public int c, r;
+    public Color col;
 
     public Entity(float w, float h, float x, float y) {
-        this.w= w;
-        this.h=h;
+        col = Color.white;
+        this.w = w;
+        this.h = h;
         pS = new PolygonShape();
         pS.setAsBox(w, h);
 
@@ -45,13 +48,14 @@ public class Entity {
         fd.friction = 1;
 
         body = Window.game2.world.createBody(bd);
-        this.fix=body.createFixture(fd);
+        this.fix = body.createFixture(fd);
 
 
         EntityCensus.addEntity(this);
     }
 
     public Entity(Vec2[] vertex, float x, float y) {
+        col = Color.white;
         pS = new PolygonShape();
         pS.set(vertex, vertex.length);
 
@@ -64,14 +68,14 @@ public class Entity {
         fd.friction = 1;
 
         body = Window.game2.world.createBody(bd);
-        body.createFixture(fd);  
+        body.createFixture(fd);
 
 
         EntityCensus.addEntity(this);
     }
 
     public void setSpeed() {
-        this.body.setLinearVelocity(new Vec2(dx*this.speedMult,dy*this.speedMult));
+        this.body.setLinearVelocity(new Vec2(dx * this.speedMult, dy * this.speedMult));
     }
 
     public void setSpeedMult(float speedMult) {
@@ -80,10 +84,10 @@ public class Entity {
 
     public void draw() {
 
-        Color.white.bind();
+        col.bind();
         GL11.glPushMatrix();
         GL11.glTranslatef(this.body.getPosition().x, this.body.getPosition().y, 0);
-        GL11.glBegin(GL11.GL_LINE_LOOP);
+        GL11.glBegin(GL11.GL_QUADS);
         {
             for (int j = 0; j < pS.getVertexCount(); j++) {
                 GL11.glVertex2f(pS.getVertex(j).x, pS.getVertex(j).y);
@@ -92,6 +96,33 @@ public class Entity {
         GL11.glEnd();
         GL11.glPopMatrix();
 
-        
+
+    }
+
+    public void setPosition(float x, float y) {
+        body.setTransform(new Vec2(x, y), 0);
+    }
+
+    public void setPosition(float x, float y, int c, int r) {
+        this.c = c;
+        this.r = r;
+        body.setTransform(new Vec2(x, y), 0);
+    }
+
+    public void setMatrixCoordinates(Position p) {
+        this.c = (int) p.x;
+        this.r = (int) p.y;
+    }
+
+    public void setC(int c) {
+        if ((Window.game2.map.getType(this.c + c, r)) != 1) {
+            this.c += c;
+        }
+    }
+
+    public void setR(int r) {
+        if ((Window.game2.map.getType(c, this.r +r)) != 1) {
+            this.r += r;
+        }
     }
 }

@@ -110,7 +110,7 @@ public class Matrix {
         for (int i = y-s; i <= y+s; i++) {
             for (int j = x-s; j <= x+s; j++) {
                 try {
-                    arr.add(this.matrix[rows-i][j]);
+                    arr.add(this.matrix[i][j]);
                 } catch (Exception ex) {
                 }
 
